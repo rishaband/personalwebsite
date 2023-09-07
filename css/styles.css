@@ -1,0 +1,814 @@
+* {
+    padding: 0;
+    margin: 0;
+    font-family: sans-serif, Arial;
+}
+
+/*#ecc98c; ,  #cac6be;   ,  #a8a29d*/
+
+body{
+    background-color: rgba(45,53,64,255); 
+    color: white;
+    height: 4000px;
+    
+}
+
+.top-info{
+    width: 100%;
+    height: 100px;
+    display: flex;
+    z-index: 1;
+   
+}
+
+.container {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 10%;
+    margin-top: 20px;
+    width: 100%;
+    z-index: 1;
+}
+
+
+.nav-name{
+    text-decoration: none;
+    font-size: 20px;
+    color: rgba(178,166,142,255);
+    font-weight: bold;
+    margin-right: 733px;
+    margin-left: 71px;
+    text-transform: uppercase;
+    font-family: 'Poppins', sans-serif;
+}
+
+nav{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+nav ul li {
+    display: inline-block;
+    margin: 10px 8px;
+}
+
+nav ul li a{
+    text-decoration: none;
+    font-weight: bold;
+    color: rgba(178,166,142,255);
+    position: relative;
+}
+
+nav ul li a::after{
+    content: '';
+    width: 0;
+    height: 3px;
+    background: rgb(255, 255, 255);
+    position: absolute;
+    left: 0;
+    bottom: -6px;
+    transition: 0.45s;
+}
+
+nav ul li a:hover::after{
+    width: 100%;
+}
+
+
+
+#main-info{
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    justify-content: space-between;
+    position: relative;
+    color: black;
+    margin-top: 50px;
+    margin-left: 200px;
+    width: 70%;
+    height: 400px;
+    background-color: rgba(45,53,64,255);
+    border: none;
+    border-color:rgb(233, 230, 230);
+    border-radius: 5px;
+    z-index: 1;
+}
+
+/* rgb(56, 4, 56) */
+.eng-title{
+    color:rgb(206, 147, 206) ;
+    font-weight: none;
+    font-family: 'Poppins';
+    text-transform: uppercase;
+ 
+}
+
+
+.personal-photo{
+    object-fit: cover;
+}
+
+.my-name{
+    margin-left: -4px;
+    padding: 50px;
+    font-size: 40px;
+    font-family: 'Poppins', sans-serif;
+    color: white;
+    
+}
+
+.my-desc {
+    font-weight: none;
+    font-size: 20px;
+    font-family: 'Poppins', sans-serif;
+    margin-top: -30px;
+    margin-left: 50px;
+    color: white;
+}
+
+.waterloo-logo{
+    width: 60px;
+    height: 60px;
+    object-fit: contain;
+    margin-top: 20px;
+    margin-left: 46px;
+}
+
+
+
+
+.course{
+    color: rgb(255, 255, 255);
+    margin-top: -50px;
+    margin-left: 120px;
+    font-family: 'Poppins', sans-serif;
+    
+}
+
+.website-ready {
+    padding: 16px 24px;
+    margin-left: 42px;
+    margin-top: 60px;
+    background-color: rgba(178,166,142,255);
+    color: black;
+    border: none;
+    border-radius: 40px;
+    box-shadow: 3px 3px 0 rgba(0,0,0,0.15);
+    transition: color 0.38s linear;
+    transition: 0.38s;
+    cursor: pointer;
+    position: relative;
+}
+
+.website-ready:hover{
+    border-radius: 40px;
+    color: #000000;
+    transform: scaleY(1);
+}
+
+
+
+.website-ready::before{
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: rgb(252, 251, 251);
+    z-index: -1;
+    border-radius: 40px;
+    transition: transform 0.5s;
+    transform-origin: 0 0;
+    transition-timing-function: cubic-bezier(0.4,1.6,0.4);
+}
+
+.website-ready::before{
+    transform: scaleX(0);
+}
+
+.website-ready:hover::before{
+    transform: scaleX(1);
+
+}
+
+.start-scroll {
+    text-transform: uppercase;
+    font-weight: bold;
+    font-size: 12px;
+}
+
+.linkedin{
+    background-color: rgba(178,166,142,255);
+    border: none;
+    padding: 13px;
+    border-radius: 18px;
+    transition: 0.45s;
+    margin-left: 10px;
+    box-shadow: 3px 3px 0 rgba(0,0,0,0.15);
+}
+
+.linkedin:hover{
+    cursor: pointer;
+    border: none;
+    padding: 13px;
+    background-color: rgb(255, 255, 255);
+    border-radius: 18px;
+    margin-left: 11px;
+    box-shadow: 3px 3px 0 rgba(0,0,0,0.15);
+    
+}
+
+.instagram{
+    background-color: rgba(178,166,142,255);
+    border: none;
+    padding: 13px;
+    border-radius: 18px;
+    transition: 0.45s;
+    margin-left: 13px;
+    box-shadow: 3px 3px 0 rgba(0,0,0,0.15);
+
+}
+
+.instagram:hover{
+    cursor: pointer;
+    border: none;
+    padding: 13px;
+    background-color: white;
+    border-radius: 18px;
+    margin-left: 14px;
+    box-shadow: 3px 3px 0 rgba(0,0,0,0.15);
+
+}
+
+.personal-photo{
+    position: absolute;
+    margin-top: 20px;
+    width: 370px;
+    height: 360px;
+    object-fit: cover;
+    border-width: 3px;
+    border-style: solid;
+    border-radius: 10px;
+    border-color:rgba(178,166,142,255) ;
+}
+
+
+
+
+
+
+/* --------- About ---------- */
+
+#about{
+    margin-left: 300px;
+    margin-top: 200px;
+    height: 600px;
+    width: 70%;
+    border: 1px;
+
+    border-color: rgb(233, 230, 230);
+    border-radius: 5px;
+}
+
+.container2{
+    display: grid;
+    grid-template-rows: 100px;
+    height: 100%;
+}
+
+
+.sample-text{
+    text-align: center;
+    color: rgba(178,166,142,0.5);
+    z-index: -1;
+    font-weight: 900;
+    font-size: 6vw;
+}
+
+.small-aboutme{
+    text-align: center;
+    color: white;
+    z-index: 0;
+    font-weight: 900;
+    font-size: 2vw;
+    margin-top: -90px;
+}
+
+.about-top{
+    width: 100%;
+}
+
+.about-intro{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    width: 100%;
+    height: 100%;
+}
+
+.introduction{
+    margin-top: 100px;
+}
+
+.my-intro{
+    font-family: 'Poppins';
+    color: rgba(178,166,142,255);
+    font-weight: 900;
+}
+
+.eng-photo{
+    height: 400px;
+    width: 500px;
+    margin-left: -150px;
+    transform: rotate(-15deg);
+ 
+    
+}
+
+.yellow-eng{
+    color: rgba(178,166,142,255);
+    opacity: 1;
+    transition: 0.3s;
+    text-decoration: none;
+}
+
+.yellow-eng:hover{
+    background-color: #000000;
+    color: rgb(233, 233, 22);
+    opacity: 1;
+    cursor: pointer;
+    border-radius: 3px;
+    text-decoration: none;
+    padding: 3px;
+    
+}
+
+
+.geese-image{
+    position: absolute;
+    height: 110px;
+    top: 900px;
+    left: 1500px;
+    opacity: 0;
+    transition: opacity 0.6s;
+}
+
+.geese-image2{
+    position: absolute;
+    height: 110px;
+    top: 900px;
+    left: 50px;
+    opacity: 0;
+    transition: opacity 0.6s;
+}
+
+.my-gpa, 
+.my-exp,
+.gpa-container,
+.exp-container{
+    display: inline-block;
+}
+
+
+.gpa-container{
+    border: 3px;
+    
+    border-radius: 300px;
+    background-color:rgba(178,166,142,0.8) ;
+    width: 150px;
+    height: 150px;
+    margin-top: 50px;
+    margin-left: 50px;
+    cursor: pointer;
+    transition: background-color 0.8s;
+    transition: color, box-shadow 0.8s
+}
+
+.gpa-desc{
+    font-size: 30px;
+    text-align: center;
+    margin-top: 20%;
+    font-family: 'Poppins';
+
+}
+
+.gpa-container:hover{
+    background-color:white ;
+    color:rgba(45,53,64,255) ;
+    box-shadow:  7px 0 rgba(178, 166, 142, 0.8);
+}
+
+.exp-container{
+    border: 3px;
+    
+    border-radius: 300px;
+    background-color:rgba(178,166,142,0.8) ;
+    width: 150px;
+    height: 150px;
+    margin-top: 50px;
+    margin-left: 100px;
+    cursor: pointer;
+    transition: background-color 0.8s;
+    transition: color, box-shadow 0.8s
+}
+
+.exp-desc{
+    font-size: 18px;
+    text-align: center;
+    margin-top: 20%;
+    font-family: 'Poppins';
+}
+
+.exp-container:hover{
+    background-color:white ;
+    color:rgba(45,53,64,255) ;
+    box-shadow:  7px 0 rgba(178, 166, 142, 0.8);
+}
+
+/* -----Experience------ */
+
+#experience{
+    display: inline-block;
+    width: 90%;
+    height: 900px;
+    border: 3px none rgb(250, 250, 250);
+    border-radius: 50px;
+    margin: 0;
+    margin-top: 200px;
+    margin-left: 80px;
+}
+
+.big-exp{
+    text-align: center;
+    color: rgba(178,166,142,0.5);
+    z-index: -1;
+    font-weight: 900;
+    font-size: 6vw;
+    
+}
+
+.small-exp{
+    text-align: center;
+    color: white;
+    z-index: 0;
+    font-weight: 900;
+    font-size: 2vw;
+    margin-top: -90px;
+}
+
+.top-div-exp{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+.top-exp-left{
+    background-color:rgba(255, 255, 255, 0.8) ;
+    border-radius: 150px;
+    width: 50%;
+    height: 400px;
+    margin-top: 150px;
+    margin-left: 40%;
+    box-shadow: 5px 0px 20px rgba(178,166,142);
+    transition: 0.3s;
+}
+
+.ttec-logo{
+    margin-left: 90px;
+    margin-top: 20px;
+}
+
+.company-name-top,
+.role-name-top,
+.date-top{
+    text-align: center;
+    color: rgb(0, 0, 0);
+    font-family: 'Poppins';
+    font-size: 18px;
+    margin-top: 10px;
+}
+
+.top-exp-right{
+    background-color:rgba(255, 255, 255, 0.8);
+    border-radius: 150px;
+    width: 50%;
+    height: 400px;
+    margin-top: 150px;
+    margin-right: -20%;
+    box-shadow: 5px 0px 20px rgba(178,166,142);
+    transition: 0.3s;
+
+}
+
+.cadets-logo{
+    width: 60%;
+    margin-top: 20px;
+    margin-left: 75px;
+}
+
+
+.cadets-name-top{
+    text-align: center;
+    color: black;
+    font-family: 'Poppins';
+    font-size: 20px;
+    margin-top: -16px;
+}
+
+.middle-div-exp{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+}
+
+
+.frc-logo{
+    width: 50%;
+    margin-top: 40px;
+    margin-left: 110px;
+}
+
+.middle-div-exp-left{
+    background-color:rgba(255, 255, 255, 0.8);
+    border-radius: 150px;
+    width: 80%;
+    height: 400px;
+    margin-top: 100px;
+    box-shadow: 5px 0px 20px rgba(178,166,142);
+    transition: 0.3s;
+
+}
+
+.robotics-top,
+.role-robotics,
+.date-robotics{
+    text-align: center;
+    color: black;
+    font-family: 'Poppins';
+    font-size: 20px;
+    margin-top: 10px;
+
+}
+
+.robotics-top{
+    margin-top: 25px;
+}
+
+.middle-div-exp-mid{
+    background-color:rgba(255, 255, 255, 0.8);
+    border-radius: 150px;
+    width: 80%;
+    height: 400px;
+    margin-top: 100px;
+    margin-left: 40px;
+    box-shadow: 5px 0px 20px rgba(178,166,142);
+    transition: 0.3s;
+
+}
+
+.ching-logo{
+    width: 30%;
+    margin-top: 30px;
+    margin-left: 150px;
+
+}
+
+.ching-title,
+.ching-role,
+.ching-date{
+    text-align: center;
+    color: black;
+    font-family: 'Poppins';
+    font-size: 20px;
+    margin-top: 10px;
+
+}
+
+.middle-div-exp-right{
+    background-color:rgba(255, 255, 255, 0.8);
+    border-radius: 150px;
+    width: 80%;
+    height: 400px;
+    margin-top: 100px;
+    margin-left: 50px;
+    box-shadow: 5px 0px 20px rgba(178,166,142);
+    transition: 0.3s;
+
+}
+
+.army-logo{
+    width: 40%;
+    margin-top: 10px;
+    margin-left: 120px;
+}
+
+.army-title,
+.army-role,
+.army-date{
+    text-align: center;
+    color: black;
+    font-family: 'Poppins';
+    font-size: 20px;
+    margin-top: 5px;
+
+}
+
+.lower-div-exp{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+.lower-div-exp-left{
+    background-color:rgba(255, 255, 255, 0.8) ;
+    border-radius: 150px;
+    width: 50%;
+    height: 400px;
+    margin-top: 100px;
+    margin-left: 40%;
+    box-shadow: 5px 0px 20px rgba(178,166,142);
+    transition: 0.3s;
+}
+
+.htn-logo{
+    width: 150px;
+    margin-left: 115px;
+    margin-top: 30px;
+}
+
+.top-exp-left:hover,
+.top-exp-right:hover,
+.middle-div-exp-left:hover,
+.middle-div-exp-mid:hover,
+.middle-div-exp-right:hover,
+.lower-div-exp-left:hover,
+.lower-div-exp-right:hover{
+    cursor: pointer;
+    background-color:#dae2ee ;
+    box-shadow: 5px 0px 20px rgb(255, 255, 255);
+
+}
+
+.htn-title{
+    text-align: center;
+    color: black;
+    font-family: 'Poppins';
+    font-size: 20px;
+    margin-top: 40px;
+}
+
+.htn-role{
+    text-align: center;
+    color: black;
+    font-family: 'Poppins';
+    font-size: 20px;
+    margin-top: 10px;
+}
+
+.htn-date{
+    text-align: center;
+    color: black;
+    font-family: 'Poppins';
+    font-size: 20px;
+    margin-top: 10px;
+}
+
+.lower-div-exp-right{
+    background-color:rgba(255, 255, 255, 0.8) ;
+    border-radius: 150px;
+    width: 50%;
+    height: 400px;
+    margin-top: 100px;
+    margin-left: -1%;
+    box-shadow: 5px 0px 20px rgba(178,166,142);
+    transition: 0.3s;
+}
+
+
+.ndp-logo{
+    width: 600px;
+    margin-left: -120px;
+    margin-top: 15px;
+}
+
+.ndp-title,
+.ndp-role,
+.ndp-date{
+    text-align: center;
+    color: black;
+    font-family: 'Poppins';
+    font-size: 20px;
+    margin-top: 15px;
+
+}
+
+.big-exp-tech{
+    text-align: center;
+    color: rgba(178,166,142,0.5);
+    z-index: -1;
+    font-weight: 900;
+    font-size: 6vw;
+    font-family: 'Poppins';
+    margin-top: 80px;
+}
+
+.skill-container{
+    position: relative;
+    max-width: 500px;
+    width: 100%;
+    background: #fff;
+    margin: 0 15px;
+    padding: 10px 20px;
+    border-radius: 7px;
+    margin-top: 120px;
+    margin-left: 120px;
+}
+
+.skills{
+    display: inline-block;
+}
+
+
+.skill-container .skills{
+    width: 100%;
+    margin: 25px 0;
+
+}
+
+.skills .title {
+    display: block;
+    font-size: 14px;
+    font-weight: 600;
+    color: #333;
+}
+
+.skills .skill-bar{
+    height: 8px;
+    width: 100%;
+    border-radius: 6px;
+    margin-top: 6px;
+    background: rgba(0,0,0,0.1);
+}
+
+.skill-bar .skill-per{
+    position: relative;
+    display: block;
+    height: 100%;
+    width: 90%;
+    border-radius: 6px;
+    background: brown;
+}
+
+.skill-per .tooltip {
+    position: absolute;
+    right: -30px;
+    top: -28px;
+    font-size: 9px;
+    font-weight: 500;
+    color: white;
+    padding: 2px 6px;
+    border-radius: 3px;
+    background: brown;
+}
+
+
+
+.skill-container .skills-html{
+    width: 100%;
+    margin: 25px 0;
+
+}
+
+.skills-html .title-html {
+    display: block;
+    font-size: 14px;
+    font-weight: 600;
+    color: #333;
+}
+
+.skills-html .skill-bar-html{
+    height: 8px;
+    width: 100%;
+    border-radius: 6px;
+    margin-top: 6px;
+    background: rgba(0,0,0,0.1);
+}
+
+.skill-bar-html .skill-per-html{
+    position: relative;
+    display: block;
+    height: 100%;
+    width: 85%;
+    border-radius: 6px;
+    background: brown;
+}
+
+.skill-per-html .tooltip-html {
+    position: absolute;
+    right: -30px;
+    top: -28px;
+    font-size: 9px;
+    font-weight: 500;
+    color: white;
+    padding: 2px 6px;
+    border-radius: 3px;
+    background: brown;
+}
