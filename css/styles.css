@@ -710,16 +710,23 @@ nav ul li a:hover::after{
     margin-top: 80px;
 }
 
+
+.bar-learn{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
 .skill-container{
     position: relative;
     max-width: 500px;
     width: 100%;
-    background: #fff;
+    background: rgba(45,53,64,255);
     margin: 0 15px;
     padding: 10px 20px;
     border-radius: 7px;
     margin-top: 120px;
-    margin-left: 120px;
+    margin-left: 200px;
+    display: inline-block;
 }
 
 .skills{
@@ -754,7 +761,7 @@ nav ul li a:hover::after{
     height: 100%;
     width: 90%;
     border-radius: 6px;
-    background: brown;
+    background: rgba(178,166,142,0.5);
 }
 
 .skill-per .tooltip {
@@ -766,7 +773,7 @@ nav ul li a:hover::after{
     color: white;
     padding: 2px 6px;
     border-radius: 3px;
-    background: brown;
+    background: rgba(178,166,142,0.5);
 }
 
 
@@ -798,7 +805,8 @@ nav ul li a:hover::after{
     height: 100%;
     width: 85%;
     border-radius: 6px;
-    background: brown;
+    background: rgba(178,166,142,0.5);
+
 }
 
 .skill-per-html .tooltip-html {
@@ -810,5 +818,295 @@ nav ul li a:hover::after{
     color: white;
     padding: 2px 6px;
     border-radius: 3px;
-    background: brown;
+    background: rgba(178,166,142,0.5);
+}
+
+.skill-container-right{
+    display: inline-block;
+    position: relative;
+    max-width: 500px;
+    width: 100%;
+    background: rgba(45,53,64,255);
+    margin: 0 15px;
+    padding: 10px 20px;
+    border-radius: 7px;
+    top: 117px;
+    margin-left: 50px;
+
+}
+
+
+.skill-container-right .skills-git{
+    width: 100%;
+    margin: 25px 0;
+    padding-bottom: 27px;
+
+}
+
+.skills-git .title-git {
+    display: block;
+    font-size: 14px;
+    font-weight: 600;
+    color: #333;
+}
+
+.skills-git .skill-bar-git{
+    height: 8px;
+    width: 100%;
+    border-radius: 6px;
+    margin-top: 6px;
+    background: rgba(0,0,0,0.1);
+}
+
+.skill-bar-git .skill-per-git{
+    position: relative;
+    display: block;
+    height: 100%;
+    width: 80%;
+    border-radius: 6px;
+    background: rgba(178,166,142,0.5);
+
+}
+
+.skill-per-git .tooltip-git {
+    position: absolute;
+    right: -30px;
+    top: -28px;
+    font-size: 9px;
+    font-weight: 500;
+    color: white;
+    padding: 2px 6px;
+    border-radius: 3px;
+    background: rgba(178,166,142,0.5);
+}
+
+.skill-container-right .skills-github{
+    width: 100%;
+   
+    
+    
+
+}
+
+.skills-gihub .title-github {
+    display: block;
+    font-size: 14px;
+    font-weight: 600;
+    color: #333;
+}
+
+.skills-github .skill-bar-github{
+    height: 8px;
+    width: 100%;
+    border-radius: 6px;
+  
+    background: rgba(0,0,0,0.1);
+}
+
+.skill-bar-github .skill-per-github{
+    position: relative;
+    display: block;
+    height: 100%;
+    width: 85%;
+    border-radius: 6px;
+    background: rgba(178,166,142,0.5);
+
+}
+
+.skill-per-github .tooltip-github {
+    position: absolute;
+    right: -30px;
+    top: -28px;
+    font-size: 9px;
+    font-weight: 500;
+    color: white;
+    padding: 2px 6px;
+    border-radius: 3px;
+    background: rgba(178,166,142,0.5);
+}
+
+.skill-container .skills-cpp{
+    width: 100%;
+    margin: 25px 0;
+
+}
+
+.skills-cpp .title-cpp {
+    display: block;
+    font-size: 14px;
+    font-weight: 600;
+    color: #333;
+}
+
+.skills-cpp .skill-bar-cpp{
+    height: 8px;
+    width: 100%;
+    border-radius: 6px;
+    margin-top: 6px;
+    background: rgba(0,0,0,0.1);
+}
+
+.skill-bar-cpp .skill-per-cpp{
+    position: relative;
+    display: block;
+    height: 100%;
+    width: 100%;
+    border-radius: 6px;
+    background: rgba(178,166,142,0.5);
+}
+
+.skill-per-cpp .tooltip-cpp {
+    position: absolute;
+    right: -30px;
+    top: -28px;
+    font-size: 9px;
+    font-weight: 500;
+    color: white;
+    padding: 2px 6px;
+    border-radius: 3px;
+    background: rgba(178,166,142,0.5);
+}
+
+.cpp-container{
+    margin-top: 50px;
+}
+
+
+.skill-container .skills-js{
+    width: 100%;
+    margin: 25px 0;
+
+}
+
+.skills-js .title-js {
+    display: block;
+    font-size: 14px;
+    font-weight: 600;
+    color: #333;
+}
+
+.skills-js .skill-bar-js{
+    height: 8px;
+    width: 100%;
+    border-radius: 6px;
+    margin-top: 6px;
+    background: rgba(0,0,0,0.1);
+}
+
+.skill-bar-js .skill-per-js{
+    position: relative;
+    display: block;
+    height: 100%;
+    width: 100%;
+    border-radius: 6px;
+    background: rgba(178,166,142,0.5);
+}
+
+.skill-per-js .tooltip-js {
+    position: absolute;
+    right: -30px;
+    top: -28px;
+    font-size: 9px;
+    font-weight: 500;
+    color: white;
+    padding: 2px 6px;
+    border-radius: 3px;
+    background: rgba(178,166,142,0.5);
+}
+
+.js-container{
+    margin-top: 50px;
+}
+
+
+.skill-container-right .skills-sas{
+    width: 100%;
+    margin: 25px 0;
+
+}
+
+.skills-sas .title-sas {
+    display: block;
+    font-size: 14px;
+    font-weight: 600;
+    color: #333;
+}
+
+.skills-sas .skill-bar-sas{
+    height: 8px;
+    width: 100%;
+    border-radius: 6px;
+    margin-top: 6px;
+    background: rgba(0,0,0,0.1);
+}
+
+.skill-bar-sas .skill-per-sas{
+    position: relative;
+    display: block;
+    height: 100%;
+    width: 65%;
+    border-radius: 6px;
+    background: rgba(178,166,142,0.5);
+}
+
+.skill-per-sas .tooltip-sas {
+    position: absolute;
+    right: -30px;
+    top: -28px;
+    font-size: 9px;
+    font-weight: 500;
+    color: white;
+    padding: 2px 6px;
+    border-radius: 3px;
+    background: rgba(178,166,142,0.5);
+}
+
+.sas-container{
+    margin-top: 50px;
+}
+
+.skill-container-right .skills-sql{
+    width: 100%;
+    margin: 25px 0;
+
+}
+
+.skills-sql .title-sql {
+    display: block;
+    font-size: 14px;
+    font-weight: 600;
+    color: #333;
+}
+
+.skills-sql .skill-bar-sql{
+    height: 8px;
+    width: 100%;
+    border-radius: 6px;
+    margin-top: 6px;
+    background: rgba(0,0,0,0.1);
+}
+
+.skill-bar-sql .skill-per-sql{
+    position: relative;
+    display: block;
+    height: 100%;
+    width: 50%;
+    border-radius: 6px;
+    background: rgba(178,166,142,0.5);
+}
+
+.skill-per-sql .tooltip-sql {
+    position: absolute;
+    right: -30px;
+    top: -28px;
+    font-size: 9px;
+    font-weight: 500;
+    color: white;
+    padding: 2px 6px;
+    border-radius: 3px;
+    background: rgba(178,166,142,0.5);
+}
+
+.sql-container{
+    margin-top: 50px;
 }
