@@ -9,7 +9,7 @@
 body{
     background-color: rgba(45,53,64,255); 
     color: white;
-    height: 4000px;
+    height: 4800px;
     
 }
 
@@ -207,6 +207,7 @@ nav ul li a:hover::after{
     transition: 0.45s;
     margin-left: 10px;
     box-shadow: 3px 3px 0 rgba(0,0,0,0.15);
+    text-decoration: none;
 }
 
 .linkedin:hover{
@@ -228,6 +229,7 @@ nav ul li a:hover::after{
     transition: 0.45s;
     margin-left: 13px;
     box-shadow: 3px 3px 0 rgba(0,0,0,0.15);
+    text-decoration: none;
 
 }
 
@@ -240,6 +242,13 @@ nav ul li a:hover::after{
     margin-left: 14px;
     box-shadow: 3px 3px 0 rgba(0,0,0,0.15);
 
+}
+
+.all-buttons-top-desc a{
+    text-decoration: none;
+    font-size: 30px;
+    color: #ababab;
+    display: inline-block;
 }
 
 .personal-photo{
@@ -1109,4 +1118,238 @@ nav ul li a:hover::after{
 
 .sql-container{
     margin-top: 50px;
+}
+
+/* ------- Contact Form ----------- */
+
+.container-5{
+    margin-top: 600px;
+    margin-left: 180px;
+}
+
+
+.row{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    margin-top: 170px;
+}
+.contact-left{
+    display: inline-block; 
+    flex-basis: 35%;
+    bottom: 100px;
+
+}   
+
+.contact-right{
+    display: inline-block;
+    flex-basis: 60%;
+    margin-left: -400px;
+    margin-top: -20px;
+    
+}
+
+.contact-left p{
+    margin-top: 30px;
+}
+
+.contact-left p i{
+    color: rgba(178,166,142,255) ;
+    margin-right: 15px;
+    font-size: 25px;
+}
+
+.social-icons{
+    margin-top: 30px;
+
+}
+
+.social-icons a{
+    text-decoration: none;
+    font-size: 30px;
+    margin-right: 15px;
+    color: #ababab;
+    display: inline-block;
+}
+
+.btn.btn2{
+    display: inline-block;
+    background: rgba(178,166,142,255);
+    padding-top: 9px;
+    padding-bottom: 9px;
+    padding-left: 25px;
+    padding-right: 25px;
+    border: none;
+    border-radius: 25px;
+    color: white;
+    font-family: 'Poppins';
+    font-size: 20px;
+    transition: 1s;
+    transition: color 0.5s;
+
+}
+
+.btn.btn2:hover{
+    background-color: white;
+    color: black;
+    cursor: pointer;
+
+}
+
+.contact-right form{
+    width: 100%;
+
+}
+
+form input, form textarea{
+    width: 90%;
+    border: 0;
+    outline: none;
+    background: rgba(178,166,142,255) ;
+    padding: 15px;
+    margin: 15px 0;
+    color: white;
+    font-size: 18px;
+    border-radius: 6px;
+}
+
+.big-con{
+    text-align: center;
+    color: rgba(178,166,142,0.5);
+    z-index: -1;
+    font-weight: 900;
+    font-size: 6vw;
+
+}
+
+.small-con{
+    text-align: center;
+    color: white;
+    z-index: 0;
+    font-weight: 900;
+    font-size: 2vw;
+    margin-top: -90px;
+
+}
+
+.top-contact-text{
+    margin-top: -100px;
+    margin-left: -150px;
+}
+
+.copyright{
+    width: 100%;
+    text-align: center;
+    padding: 25px 0;
+    background: rgba(45,53,64,255);
+    font-weight: 300;
+    margin-top: 100px;
+}
+
+
+/* ----- Responsive Design -----*/ 
+
+@media only screen and (max-width: 700px){
+
+    body img{
+        display: none;
+    }
+
+    .profile-picture img{
+        display: none;
+    }
+
+    .my-name{
+        font-size: 30px;
+        margin-left: -215px;
+    }
+
+    .my-desc{
+        font-weight: none;
+        font-size: 15px;
+        font-family: 'Poppins';
+        margin-top: -20px;
+        margin-left: -165px;
+    
+    }
+
+    .waterloo-logo{
+        margin-left: -165px;
+    }
+
+    .course-container{
+        margin-left: -195px;
+    }
+
+    .all-buttons-top-desc{
+        margin-left: -185px;
+    }
+
+    .grad-image{
+        display: none;
+    }
+
+    .about-top{
+        margin-left: -250px;
+    }
+
+    .about-top h1{
+        margin-left: -20px;
+        font-size: 105px;
+    }
+    
+    .about-top h2{
+        font-size: 45px;
+    }
+
+    .introduction{
+        max-width: 170%;
+        margin-left: -225px;
+        transform: scaleX(1.2);
+        line-height: 20px;  
+    }
+
+    .my-gpa{
+        display: none;
+    }
+
+    .my-exp{
+        display: none;
+    }
+
+    .top-experience-text h1{
+        font-size: 55px;
+        margin-left: -100px;
+    }
+
+    .top-experience-text h2{
+        font-size: 40px;
+        margin-left: -90px;
+    }
+
+    .top-div-exp{
+        display: block;
+    }
+
+    .top-exp-left{
+        width: 80%;
+        margin-left: -15px;
+    }
+
+    .top-exp-left h1{
+        vertical-align: middle;
+    }
+
+    .top-exp-right{
+        width: 80%;
+        margin-left: -15px;
+
+    }
+    .middle-div-exp{
+        display: block;
+
+    }
+
+    .lower-div-exp{
+        display: block;
+    }
 }
