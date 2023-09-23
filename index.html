@@ -17,6 +17,7 @@
 
 <body>
 
+
 	<div class="top-info">
 		<div class="container">
 			<nav class="nav-info">
@@ -24,10 +25,10 @@
 					R.Anand
 				</a>
 				<ul>
-					<li><a href="#" class="nav-scroll">Home</a></li>
-					<li><a href="#" class="nav-scroll">About</a></li>
-					<li><a href="#" class="nav-scroll">Experience</a></li>
-					<li><a href="#" class="nav-scroll">Contact</a></li>
+					<li><a href="#main-info" class="nav-scroll">Home</a></li>
+					<li><a href="#about" class="nav-scroll">About</a></li>
+					<li><a href="#experience" class="nav-scroll">Experience</a></li>
+					<li><a href="#contact" class="nav-scroll">Contact</a></li>
 				</ul>
 			</nav>
 
@@ -49,7 +50,10 @@
 			
 			<div class="all-buttons-top-desc"> 
 				<button class="website-ready">
-					<P class="start-scroll">Get Started</P>
+					<a href="#about" class="ref-scroll">
+						<P class="start-scroll">Get Started</P>
+					</a>
+					
 				</button>
 	
 				<a href="https://www.linkedin.com/in/rishabanand/" target="_blank">
@@ -353,12 +357,13 @@
 					</div>
 				</div>
 				<div class="contact-right">
-					<form>
+					<form name="submit-to-google-sheet">
 						<input type="text" name="Name" placeholder="Your Name" required>
 						<input type="email" name="email" placeholder="Your Email" required>
 						<textarea name="Message"  rows="6" placeholder="Your Message"></textarea>
 						<button type="submit" class="btn btn2">Send Message <i class="fa-solid fa-arrow-right"></i></button>
 					</form>
+					<span id="msg"></span>
 
 				</div>
 			</div>	
@@ -373,6 +378,25 @@
 	<script src="script.js"></script>
 
 
+	  
+	<script>
+		const scriptURL = 'https://script.google.com/macros/s/AKfycbwmT9DInw2Ily9Hq4dkrBSlnN3tORSoBiMBuLL1s6whKEgsd39o9oPrO05NJAWD5L6d/exec'
+		const form = document.forms['submit-to-google-sheet']
+		const msg = document.getElementById("msg")
+	  
+		form.addEventListener('submit', e => {
+		  e.preventDefault()
+		  fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+			.then(response => {
+				msg.innerHTML = "Message has been sent succesfully!"
+				setTimeout(function(){
+					msg.innerHTML = ""
+				}, 5000)
+				form.reset()
+			})
+			.catch(error => console.error('Error!', error.message))
+		})
+	  </script>
 
 </body>
 </html>

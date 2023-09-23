@@ -6,11 +6,20 @@
 
 /*#ecc98c; ,  #cac6be;   ,  #a8a29d*/
 
+html {
+    scroll-behavior: smooth;
+}
+
 body{
     background-color: rgba(45,53,64,255); 
     color: white;
     height: 4800px;
     
+}
+
+section{
+    width: 100%;
+    height: 300vh;
 }
 
 .top-info{
@@ -76,6 +85,10 @@ nav ul li a:hover::after{
     width: 100%;
 }
 
+
+a p{
+    color: black;
+}
 
 
 #main-info{
@@ -1245,6 +1258,12 @@ form input, form textarea{
     margin-top: 100px;
 }
 
+
+#msg{
+    color: #dae2ee;
+    margin-top: 40px;
+    display: block;
+}
 
 /* ----- Responsive Design -----*/ 
 
