@@ -274,6 +274,37 @@ hr{
 }
 
 
+.dark-mode,:root {
+    background: rgb(0, 0, 0);
+    color: #fff;
+    border-color: hsla(0,0%,100%,0.1)
+}
+
+.dark-mode,.dark-mode .logo {
+    transition: all .25s linear
+}
+
+.dark-mode .logo {
+    color: #000
+}
+
+.light-mode {
+    background: #fff;
+    color: #000;
+    border-color: rgba(0,0,0,0.1);
+    transition: all .25s linear
+}
+
+.light-mode .logo {
+    color: #fff;
+    transition: all .25s linear
+}
+
+
+
+
+
+
 /* ----- Animations */ 
 @keyframes glitch-skew {
     0% {
