@@ -1,6 +1,6 @@
 body{
     background-color: #000;
-    margin: 0;
+    margin-top: 45px;
     padding: 0;
     font-family: Poppins;
     line-height: 1.55;
@@ -230,14 +230,14 @@ hr{
 
 .glitch:before{
     left: 2px;
-    text-shadow: -2px 0 #d318f0;
+    text-shadow: -2px 0 #ff00c1;
     clip: rect(44px, 450px, 56px,0);
     animation: glitch-anim 5s linear infinite alternate-reverse;
 }
 
 .glitch:after{
     left: -2px;
-    text-shadow: -2px 0 #dc35dc, 2px 2px #9d35ad;
+    text-shadow: -2px 0 #00fff9, 2px 2px #ff00c1;
     animation: glitch-anim2 1s linear infinite alternate-reverse;
 }
 
@@ -250,6 +250,29 @@ hr{
     height: 100%;
     box-sizing: border-box;
 }
+
+
+.footer{
+    padding: 40px 0;
+    flex-grow: 0;
+    opacity: .5;
+}
+
+.inner-foot{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 0;
+    width: 760px;
+    max-width: 100%;
+}
+
+.footer .copyright{
+    display: flex;
+    align-items: center;
+    font-size: 1rem;
+}
+
 
 /* ----- Animations */ 
 @keyframes glitch-skew {
