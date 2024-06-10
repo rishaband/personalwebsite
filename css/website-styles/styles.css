@@ -303,11 +303,11 @@ hr{
 
 #preloader{
     background: #000000 url(images/simplepre.gif) no-repeat center center;
-    height: 75%;
-    width: 75%;
+    height: 100%;
+    width: 100%;
     position: fixed;
     z-index: 100;
-    background-size: 15%;
+    background-size: 10%;
 }
 
 
