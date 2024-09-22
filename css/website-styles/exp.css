@@ -1,4 +1,4 @@
-body{
+body {
     background-color: #000;
     margin-top: 45px;
     padding: 0;
@@ -6,219 +6,52 @@ body{
     line-height: 1.55;
     letter-spacing: -.02em;
     color: #fff;
-    overflow: hidden;
+    /* Remove overflow: hidden; */
+    /* height: 2000px; */ /* You can remove this too */
 }
 
-.container.center{
-    border: none;
-    margin: 0 auto;
-}
-
-.container{
+.intro h1 {
     display: flex;
-    flex-direction: column;
-    max-width: 864px;
-    min-height: 100vh;
-}
-@media(max-width:684px){
-    .container{
-        padding: 20px;
-    }
+    justify-content: center;
+    padding-bottom: 20px;
 }
 
-.header{
-    display: flex;
-    flex-direction: column;
-    position: relative;
-}
-
-.inner-header{
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-}
-
-.header-logo{
-    display: flex;
-    flex: 1;
-}
-
-.header-logo a{
-    flex: 0 0 auto;
-    max-width: 100%;
-    text-decoration: none;
-}
-
-.logo{
-    display: flex;
-    align-items: center;
-    text-decoration: none;
-    background: #fff;
-    color: #000;
-    padding: 5px 10px;
-}
-
-.header-logo:after{
-    content: "";
-    background: repeating-linear-gradient(60deg, #fff, #fff 2px, transparent 0, transparent 10px);
-    width: 100%;
-    display: block;
-}
-
-.content{
-    display: flex;
-    flex-direction: column;
-}
-
-.label-content{
-    margin-top: 18px;
-}
-
-hr{
-    width: 100%;
-    border: none;
-    background: rgb(255, 255, 255) ;
-    height: 2px;
-}
-
-
-.bracket{
-    color: #fff;
-}
-
-.links{
-    color: #fff;
-    text-decoration: underline;
-    cursor: pointer;
-}
-
-.experience{
-    display: flex;
-    flex-direction: column;
-    line-height: 1em;
-    row-gap: 2em;
-}
-
-.experience.row{
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-}
-
-.experience .icon{
-    align-self: flex-start;
-    padding: none;
-}
-
-.experience .icon .icon-img{
-    height: 44px;
-    width: 44px;
+.content-box {
+    background-color: #000000;
+    padding: 20px;
+    text-align: center;
     border-radius: 8px;
-    padding: 10px;
 }
 
-.experience .icon .icon-img.walker{
-    background-color: rgba(12, 108, 224, 0.571);
+img {
+    width: 100%; /* Ensures the image takes up the full container width */
+    height: auto; /* Maintains the aspect ratio */
+    border-radius: 15px; /* Add rounded corners */
+    transition: transform 0.3s ease-in-out; /* Smooth transition effect */
+    border: 3px solid #fff;
 }
 
-.experience .line{
-    margin-bottom: 4px;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    max-width: 190px;
-    
+img:hover {
+    transform: scale(1.1); /* Zoom in the image on hover */
 }
 
-.experience .title{
-    color: #feffff;
-    text-decoration: none;
-    font-size: 16px;
-    font-weight: 700;
+.job-title {
+    font-weight: bold;
+    font-size: 1.25rem;
 }
 
-.experience .tag{
-    display: inline-block;
-    background: #435bc9;
-    font-weight: 600;
-    font-size: 12px;
-    color: #fff;
-    border-radius: 4px;
-    margin: 0 4px;
-    padding: 6px;
-    padding-bottom: 4px;
-    line-height: 0.9em;
+.skills {
+    color: #6c757d; /* Muted color */
+    font-style: italic;
 }
 
-.experience .desc{
-    max-width: 100%;
-    width: none;
+.job-description {
+    margin-top: 10px;
+    font-size: 0.9rem;
 }
 
-
-.experience .icon .icon-img.site{
-    background-color: rgba(255, 255, 255, 0.1);
-}
-
-
-.experience .icon .icon-img.electrium{
-    background-color: rgba(164, 255, 149, 0.2);
-}
-
-.experience .icon .icon-img.tech{
-    background-color: rgb(255, 255, 255);
-}
-
-.experience .icon .icon-img.loo{
-    background-color: rgba(192,193,126,0.4);
-}
-
-.experience .icon .icon-img.filelink{
-    background-color: rgba(12, 127, 189, 0.4);
-}
-
-.experience .icon .icon-img.python{
-    background-color: rgba(73, 128, 158, 0.4);
-}
-
-.experience .icon .icon-img.c{
-    background-color: rgba(205, 217, 223, 0.4);
-}
-
-.experience .icon .icon-img.js{
-    background-color: rgba(255, 255, 255, 0.913);
-}
-
-.experience .icon .icon-img.sql{
-    background-color: rgba(227, 236, 237, 0.913);
-}
-
-.experience .icon .icon-img.html{
-    background-color: rgba(230, 159, 133, 0.913);
-}
-
-.experience .icon .icon-img.css{
-    background-color: rgba(134, 149, 226, 0.913);
-}
-
-.experience .icon .icon-img.php{
-    background-color: rgba(87, 99, 157, 0.913);
-}
-
-.experience .icon .icon-img.git{
-    background-color: rgba(234, 164, 164, 0.913);
-}
-
-.experience .icon .icon-img.figma{
-    background-color: rgba(255, 255, 255, 0.913);
-}
-
-.experience .icon .icon-img.boot{
-    background-color: rgba(210, 141, 239, 0.913);
-}
-
-.experience .icon .icon-img.prgx{
-    background-color: rgba(204, 158, 235, 0.913);
+.prob-title{
+    padding-top: 28px;
 }
 
 .glitch{
@@ -227,7 +60,7 @@ hr{
     font-weight: 900;
     font-family: Poppins;
     animation: glitch-skew 1s linear infinite alternate-reverse;
-    font-size: 70px;
+    font-size: 43px;
     line-height: 70px;
     padding-top: 20px;
 }
@@ -255,65 +88,39 @@ hr{
     box-sizing: border-box;
 }
 
-
-.footer{
-    padding: 40px 0;
-    flex-grow: 0;
-    opacity: .5;
+.text-center {
+    text-align: center; /* Centers the button */
+    margin-top: 20px; /* Adds some space above the button */
 }
 
-.inner-foot{
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin: 0;
-    width: 760px;
-    max-width: 100%;
+/* Rest of the button styles remain the same */
+.home-button {
+    position: absolute; /* Positioning the button absolutely */
+    top: 20px; /* Distance from the top */
+    left: 20px; /* Distance from the left */
+    padding: 10px 20px; /* Adjusts the size of the button */
+    background-color: #ffffff; /* Button color */
+    color: rgb(0, 0, 0); /* Text color */
+    border: none; /* Removes default border */
+    border-radius: 25px; /* Rounded corners */
+    cursor: pointer; /* Changes cursor to pointer on hover */
+    transition: background-color 0.3s; /* Smooth background change */
 }
 
-.footer .copyright{
-    display: flex;
-    align-items: center;
-    font-size: 1rem;
-}
-
-
-.dark-mode,:root {
-    background: rgb(0, 0, 0);
-    color: #fff;
-    border-color: hsla(0,0%,100%,0.1)
-}
-
-.dark-mode,.dark-mode .logo {
-    transition: all .25s linear
-}
-
-.dark-mode .logo {
-    color: #000
-}
-
-.light-mode {
-    background: #fff;
-    color: #000;
-    border-color: rgba(0,0,0,0.1);
-    transition: all .25s linear
-}
-
-.light-mode .logo {
-    color: #fff;
-    transition: all .25s linear
-}
-
-#preloader{
-    background: #000000 url(images/simplepre.gif) no-repeat center center;
-    height: 100%;
-    width: 100%;
-    position: fixed;
-    z-index: 100;
-    background-size: 10%;
+.home-button:hover {
+    color: rgb(39, 4, 233);
+    cursor: pointer;
 }
 
 
+body {
+    opacity: 0; /* Start with the body hidden */
+    transition: opacity 0.5s ease; /* Smooth transition */
+}
+
+body.loaded {
+    opacity: 1; /* Fade in */
+}
 
 
 /* ----- Animations */ 
