@@ -60,7 +60,7 @@ body{
 
 .header-logo:after{
     content: "";
-    background: repeating-linear-gradient(60deg, #fff, #fff 2px, transparent 0, transparent 10px);
+    background: repeating-linear-gradient(90deg, #fff, #fff 2px, transparent 0, transparent 10px);
     width: 100%;
     display: block;
 }
