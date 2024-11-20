@@ -14,6 +14,10 @@ body{
     margin: 0 auto;
 }
 
+p{
+    margin-bottom: 1em;
+}
+
 .container{
     display: flex;
     flex-direction: column;
@@ -219,6 +223,10 @@ hr{
 
 .experience .icon .icon-img.prgx{
     background-color: rgba(204, 158, 235, 0.913);
+}
+
+.experience .icon .icon-img.wlop{
+    background-color: rgba(0, 0, 0, 0.913);
 }
 
 .glitch{
