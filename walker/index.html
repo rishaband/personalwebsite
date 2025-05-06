@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Project Page</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/website-styles/walker.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+</head>
+<body>
+
+  <div class="container">
+    <div class="top-nav">
+      <div> <a style="color: white;" href="/prgx/index.html">&larr; Back</a></div>
+      <div><a href="/index.html" style="color: white;">Home &rarr;</a></div>
+    </div>
+
+    <div class="title-section">
+      <h1><em>Walker Industries</em></h1>
+      <p>Machine Learning Intern</p>
+    </div>
+
+    <div class="main-image">
+      <img src="/images/walkerdesc2.png" alt="Project Screenshot" />
+    </div>
+
+    <div class="info-grid">
+      <div class="info-column">
+        <h3>Timeline</h3>
+        <ul>
+          <li>Feb. 2024 – Apr. 2024</li>
+          <li>CO-OP #1</li>
+          <li>Intern Performance Rating: <a href="https://uwaterloo.ca/co-operative-education/your-work-term/work-term-evaluations" target="_blank" style="text-decoration: none; color: rgb(255, 255, 255);">Outstanding <i class="fa-solid fa-arrow-up-right-from-square" style="color: #ffffff;"></i></a></li>
+        </ul>
+
+        <h3>Tech</h3>
+        <ul>
+          <li>C#</li>
+          <li>Python</li>
+          <li>TensorFlow</li>
+          <li>HuggingFace</li>
+        </ul>
+      </div>
+
+      <div class="info-column overview">
+        <h3>Overview</h3>
+        <p>
+          Walker Industries is a Miami-based VR/XR startup working on integrating operating systems into extended and virtual reality. I joined the <a href="https://walkerdev.itch.io/project-replicant" target="_blank" style="text-decoration: none; color: white; font-style: italic;">Project Replicant <i class="fa-solid fa-arrow-up-right-from-square" style="color: #ffffff;"></i></a> &nbsp; team working on LLM local ingestion. 
+          A part of Project Replicant was fully open sourced by the Walker Industries developers. You may contribute <a href="https://github.com/Walker-Industries-RnD/Project-Replicant" target="_blank" style="text-decoration: none; color: white; font-style: italic;">here.</a>
+        </p>
+        <a href="https://www.walkerindustries.xyz/" target="_blank" style="color: white; text-decoration: none;">Website <i class="fa-solid fa-arrow-up-right-from-square" style="color: #ffffff;"></i></a>
+      </div>
+    </div>
+
+    <h3>Work Product</h3>
+    <p>
+        I began working on data collection and formatting using python & web scraping. This was followed by a filtering stage to focus on high-quality and domain specific content since the LLM itself was domain-specific. 
+        At the time, OpenAI released a new query(input) format called ChatML or Chat Markup Language. Traditionally, LLM's would tackle unstructured data but OpenAI's initial v0 models 
+        expected the query to be in the form of ChatML. See below for example:
+        <pre style="background-color: #0d0d0d; color: #dacc15; padding: 16px; border-radius: 8px; font-family: monospace; overflow-x: auto; font-size: 0.9rem;">
+            [
+              {"token": "&lt;|im_start|&gt;"},
+              "system\nYou are ChatGPT, a large language model trained by OpenAI. 
+              {"token": "&lt;|im_end|&gt;"}, "\n",
+              {"token": "&lt;|im_start|&gt;"},
+              "user\nHow are you",
+              {"token": "&lt;|im_end|&gt;"}, "\n",
+              {"token": "&lt;|im_start|&gt;"},
+              "assistant\nI am doing well!",
+              {"token": "&lt;|im_end|&gt;"}, "\n",
+              {"token": "&lt;|im_start|&gt;"},
+              "user\nHow are you now?",
+              {"token": "&lt;|im_end|&gt;"}, "\n"
+            ]
+        </pre>
+
+        Although this is a bit more detailed formatting, ChatML follows this general structure. That data that we collected with scraping was then formatted using tags like &lt|system|> & &lt|user|>. 
+        This was then further used for a modified RAG pipeline which used a Vector DB for semantic search and retrieval. The LLM in use was a transformer and the context of the conversation
+        between the AI & the User was guaranteed to remain within the VR/XR domain. This meant that the volume of the training data was relatively small. When the conversation between the AI & User concluded,
+        post processing was done on a transcript that was generated. It included running the transcript through a light-weight prebuilt NLP model to extract key details. I also worked on building this process "session-aware",
+        meaning that each conversation transcript was stored as an embedding in the Vector DB which allowed the system to re-inject prior conversation context into an ongoing conversation. This was possible as every session generated a unique <span style="color: rgb(84, 155, 84);">chat_name</span>. 
+        The processed transcripts would be stored in the Vector DB with metadata tags like {<span style="color: rgb(84, 155, 84);">chat_name</span>: "X", <span style="color: rgb(84, 155, 84);">timestamp</span>: "T", vector: [...]}.
+        Now when a user wants to recall an old conversation "X", we can just filter our Vector DB for <span style="color: rgb(84, 155, 84);">chat_name</span>=="X" - provided that the user is using the EXACT metadata tag which was 
+        saved from the previous chat. 
+    </p>
+    <h3>Results</h3>
+    <p>Achieved a <span style="font-weight: bold;">67%</span> increase in text synthesis efficiency, especially for knowledge-heavy or context-driven queries</p>
+    <p>Increased LLM output query accuracy by <span style="font-weight: bold;">15%</span></p>
+   
+    <hr>
+
+    <footer class="footer">
+      <div class="footer-bar">
+        <a href="/index.html" class="refbacklast" style="text-decoration: none;">Rishab Anand</a>
+        <span class="right-status">
+          <span class="pulse-wrapper">
+              <i class="fa-solid fa-circle fa-xs" style="color: #11ff00;"></i>
+          </span>
+          Last updated 5/3/2025
+        </span>
+      </div>
+    </footer>
+
+  </div>
+
+</body>
+</html>

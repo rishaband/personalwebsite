@@ -11,12 +11,19 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="icon" type="image/png" href="f-sig.png">
     <link rel="stylesheet" href="css/animate.css">
-</head>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cal+Sans&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playwrite+RO:wght@100..400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Lilita+One&family=Playwrite+RO:wght@100..400&display=swap" rel="stylesheet">
 
+</head>
+ 
 
 
 <body class="dynamic">
-    <div id="preloader"></div>
+    
+   
     <div class="container center heading--one-size">
         <div id="particles-js" style="position: absolute; top: 0; left: 0; width: 100%; height: 52%; pointer-events: none;   ">
             <canvas style="width: 100%; height: 100%; display: inline-block; vertical-align: baseline; overflow-clip-margin: content-box; overflow: clip; padding-bottom: 200px;"  >
@@ -34,39 +41,79 @@
         <div class="content">
     
             <div class="label-content">
-                <h1 class="glitch name" data-text="Rishab Anand" id="name" style="margin-top: 40px; color: #fff;">Rishab Anand</h1>
-                <p style="color: #fff; margin-bottom: 20px;">Dedicated Software Engineer located in Waterloo, On studying Computer Engineering @ <span style="color: #d9ca41">UWaterloo</span></p>
-                <p style="margin-bottom: 20px;">Seeking Summer 2025 Internships!</p>
-                <hr>
-                <p style="margin-bottom: 20px; color:#fff ;">> socials</p>
-                <p style="margin-bottom: 20px;">
-                   <span class="bracket" >[</span> 
-                    <a class="links" href="https://github.com/rishaband" target="_blank" >github</a>
-                    <span class="bracket" >]</span>
-                    <span class="bracket">[</span> 
-                    <a class="links" href="https://www.linkedin.com/in/rishaband/" target="_blank">linkedin</a>
-                    <span class="bracket">]</span>
+                <h1 class=" name" data-text="Rishab Anand" id="name" style="margin-top: 40px; color: #fff;">Rishab Anand</h1>
+    
+                  
+                <p style="margin-bottom: 20px; font-family: 'Poppins', sans-serif; font-size: 15px; font-weight: bold;">Toronto, Canada <i class="fa-brands fa-canadian-maple-leaf" style="color: #e71c0d;"></i> &nbsp <span id="live-time" class="live-clock"></span>
                 </p>
+                <a href="https://github.com/rishaband" target="_blank" class="icon-link" style="text-decoration: none; margin-right: 10px;"><i class="fa-brands fa-github fa-2xl" style="color: #ffffff;"></i></a>
+                <a href="https://www.linkedin.com/in/rishabanand/" target="_blank" class="icon-link" style="text-decoration: none; margin-right: 10px;"><i class="fa-brands fa-linkedin fa-2xl" style="color: #ffffff;"></i></a>
+                <a href="mailto:r25anand@uwaterloo.ca"  class="icon-link" style="text-decoration: none; margin-right: 10px;"><i class="fa-solid fa-envelope fa-2xl" style="color: #ffffff;"></i></a>
+
+
                 <hr>
-                <p style="color: #fff ;">> experience &nbsp <a href="exp.html" style="text-decoration: none;">Learn More <i class="fa-solid fa-arrow-up-right-from-square"></i></a></p>
-             
-                <div class="experience" style="margin-bottom: 45px; height: auto;">
-                    <div class="row job" >
+                <p style="color: #fff; margin-bottom: 10px;">> education</p>
+                <div class="experience education">
+                    <div class="row job">
                         <div class="col-left icon" style="margin: none; max-width: fit-content;">
-                            <a href="https://teamwaterloop.ca/" target="_blank" style="text-decoration: none; color: white;">
-                                <img class="icon-img wlop" src="images/wlop.png">
+                            <a class="uwaterloo-hover" href="https://uwaterloo.ca/" target="_blank" style="text-decoration: none; color: white;">
+                                <img class="icon-img loo" src="images/waterloo.svg">
                             </a>
                         </div>
                         <div class="col-right desc" style="width: fit-content; padding-left: 0;" >
                             <div class="line">
-                                <div class="title">Waterloop</div>
+                                <div class="title">University of Waterloo</div>
+                            </div>
+                            <div class="description" style="color: #5d0096; ">Computer Engineering</div>
+                   
+                        </div>
+                    </div>
+                </div>
+
+                <hr>
+        
+                <p style="color: #fff;">&gt; experience &nbsp;
+                    <a href="watstreet/index.html" class="learn-link">
+                      Learn More <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                    </a>
+                  </p>
+                  
+                <div class="experience" style="margin-bottom: 0px; height: auto;">
+                    <div class="row job first" style="border-radius: 20px;" >
+                        <div class="col-left icon" style="margin: none; max-width: fit-content;">
+                            <a href="https://watstreet.netlify.app/" target="_blank" style="text-decoration: none; color: white;">
+                                <img style="transform: scale(1);" class="icon-img watstreet" src="images/watst.webp">
+                            </a>
+                        </div>
+                        <div class="col-right desc" style="width: fit-content; padding-left: 0;" >
+                            <div class="line">
+                                <div class="title">Wat Street</div>
                                 <div class="tag">Current</div>
                             </div>
-                            <div class="description" style="color: #a0a0a0;">Embedded Software Engineer</div>
+                            <div class="description" style="color: #7e787a">Quant MLE</div>
+                            
+                        </div>
+                    </div>
+
+
+                <div class="experience" style="margin-bottom: 0px; height: auto;">
+                    <div class="row job first" style="border-radius: 20px;" >
+                        <div class="col-left icon" style="margin: none; max-width: fit-content;">
+                            <a href="https://www.day5analytics.com/" target="_blank" style="text-decoration: none; color: white;">
+                                <img style="transform: scale(1);" class="icon-img day5" src="images/day5-2.PNG">
+                            </a>
+                        </div>
+                        <div class="col-right desc" style="width: fit-content; padding-left: 0;" >
+                            <div class="line">
+                                <div class="title">Day5 Analytics</div>
+                                <div class="tag">Current</div>
+                            </div>
+                            <div class="description" style="color: #7e787a">Data & AI Intern</div>
+                            
                         </div>
                     </div>
                 <div class="experience" style="margin-bottom: 5px; height: auto;">
-                    <div class="row job" >
+                    <div class="row job second" style="border-radius: 20px;">
                         <div class="col-left icon" style="margin: none; max-width: fit-content;">
                             <a href="https://www.prgx.com/" target="_blank" style="text-decoration: none; color: white;">
                                 <img class="icon-img prgx" src="images/prgx.png">
@@ -75,12 +122,13 @@
                         <div class="col-right desc" style="width: fit-content; padding-left: 0;" >
                             <div class="line">
                                 <div class="title">PRGX Global</div>
-                                <div class="tag">Current</div>
+                            
                             </div>
-                            <div class="description" style="color: #a0a0a0;">Data Science Intern</div>
+                            <div class="description" style="color: #7e787a">Data Science Intern</div>
+                          
                         </div>
                     </div>
-                    <div class="row job" >
+                    <div class="row job third" style="border-radius: 20px;" >
                         <div class="col-left icon" style="margin: none; max-width: fit-content;">
                             <a href="https://www.walkerindustries.xyz/" target="_blank" style="text-decoration: none; color: white;">
                                 <img class="icon-img walker" src="images/walker.png">
@@ -91,24 +139,13 @@
                                 <div class="title">Walker Ind.</div>
                             
                             </div>
-                            <div class="description" style="color: #a0a0a0;">Machine Learning Intern</div>
+                            <div class="description" style="color: #7e787a">Machine Learning Intern</div>
+                         
                         </div>
                     </div>
-                    <div class="row job">
-                        <div class="col-left icon" style="margin: none; max-width: fit-content;">
-                            <a href="https://ttec.ca/" target="_blank" style="text-decoration: none; color: white;">
-                                <img class="icon-img tech" src="images/ttec_computers_logo-removebg-preview.png">
-                            </a>
-                        </div>
-                        <div class="col-right desc" style="width: fit-content; padding-left: 0;" >
-                            <div class="line">
-                                <div class="title">TTEC INC.</div>
-                            </div>
-                            <div class="description" style="color: #a0a0a0; ">IT Systems Analyst Intern</div>
-                        </div>
-                    </div>
+                    
                 </div>
-                <hr>
+                <!-- 
                 <p style="color: #fff; margin-bottom: 0;">> technical</p>
                 
                 <div class=" experience technical" style="margin-bottom: 5px; display: inline-block;">
@@ -183,45 +220,27 @@
                         </div>
                     </div>
 
-                </div>
+                </div> -->
                 <hr>
-                <p style="color: #fff; margin-bottom: 0;">> education</p>
-                <div class="experience education">
-                    <div class="row job">
-                        <div class="col-left icon" style="margin: none; max-width: fit-content;">
-                            <a href="https://uwaterloo.ca/" target="_blank" style="text-decoration: none; color: white;">
-                                <img class="icon-img loo" src="images/waterloo.svg">
-                            </a>
-                        </div>
-                        <div class="col-right desc" style="width: fit-content; padding-left: 0;" >
-                            <div class="line">
-                                <div class="title">University of Waterloo</div>
-                            </div>
-                            <div class="description" style="color: #a0a0a0; ">Computer Eningeering</div>
-                        </div>
-                    </div>
-                </div>
-                <hr>
-                <p style="color: #fff; margin-bottom: 0;">> contact</p>
-                <p>
-                    <span class="bracket" >[</span> 
-                    <a class="links" style="text-decoration: none"><i class="fa-solid fa-phone"></i> &nbsp 4163154650</a>
-                    <span class="bracket" >]</span> <br>
-                    <span class="bracket">[</span> 
-                    <a class="links" style="text-decoration: none"><i class="fa-solid fa-envelope"></i> &nbsp rishabb.annand@gmail.com</a>
-                    <span class="bracket">]</span>
-                </p>
+        
+           
+                
 
             </div>
 
         </div>
         <footer class="footer">
-            <div class="inner-foot">
-                <div class="copyright">
-                    <span>Copyright ©2024 All rights reserved by Rishab Anand. Last updated 9/1/2024 </span>
-                </div>
+            <div class="footer-bar">
+              <a href="index.html" class="refbacklast" >Rishab Anand</a>
+              <span class="right-status">
+                <span class="pulse-wrapper">
+                    <i class="fa-solid fa-circle fa-xs" style="color: #11ff00;"></i>
+                </span>
+                Last updated 5/3/2025
+              </span>
             </div>
-        </footer>
+          </footer>
+          
         
 
         
@@ -233,7 +252,7 @@
 
 
     <script src="particles.js"></script>
-    <script src="app.js"></script>
+   <!--  <script src="app.js"></script>-->
     
     
     <script src="https://cdn.jsdelivr.net/npm/@floating-ui/core@1.6.0"></script>
@@ -241,16 +260,19 @@
     <script src="javascript/js/bootstrap.js"></script>
     <script src="js/main.js"> </script>
     <script>
-    
-    
-        var loader = document.getElementById("preloader");
-        window.addEventListener("load", function(){
-            setTimeout(function(){
-                loader.style.display = "none";
-                // Re-enable scrolling after preloader hides
-                document.body.style.overflow = "auto";
-            }, 2000); // Adjust the delay time in milliseconds (e.g., 2000 for 2 seconds)
-        });
-    </script>
+        function updateTime() {
+          const now = new Date();
+          const timeString = now.toLocaleTimeString(); // e.g., 10:52:32
+          document.getElementById('live-time').textContent = timeString;
+        }
+      
+        // Initial call
+        updateTime();
+      
+        // Update every second
+        setInterval(updateTime, 1000);
+      </script>
+      
+      
 </body>
 </html>
