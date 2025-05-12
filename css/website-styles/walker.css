@@ -52,8 +52,9 @@ body {
     width: 100%;
     border-radius: 10px;
     box-shadow:
-      -60px -60px 120px rgba(40, 46, 55, 0.4),    /* top-left slate gray */
-       60px 60px 120px rgba(88, 107, 133, 0.28);  /* bottom-right bluish-gray */
+      -60px -60px 120px rgba(60,55,42,255),    /* top-left slate gray */
+      60px 60px 120px rgba(109, 97, 73, 0.5)
+      /* bottom-right bluish-gray */
   }
   
   
