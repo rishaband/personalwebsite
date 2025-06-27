@@ -76,7 +76,7 @@
             ]
         </pre>
 
-        Although this is a bit more detailed formatting, ChatML follows this general structure. That data that we collected with scraping was then formatted using tags like &lt|system|> & &lt|user|>. 
+        Although this is a bit more detailed formatting, ChatML follows this general structure. The data that we collected with scraping was then formatted using tags like &lt|system|> & &lt|user|>. 
         This was then further used for a modified RAG pipeline which used a Vector DB for semantic search and retrieval. The LLM in use was a transformer and the context of the conversation
         between the AI & the User was guaranteed to remain within the VR/XR domain. This meant that the volume of the training data was relatively small. When the conversation between the AI & User concluded,
         post processing was done on a transcript that was generated. It included running the transcript through a light-weight prebuilt NLP model to extract key details. I also worked on building this process "session-aware",

@@ -148,8 +148,17 @@ hr{
 }
 
 .experience .icon .icon-img.walker{
-    background-color: rgba(12, 108, 224, 0.571);
+    background-color: rgba(24,24,26,255);
     transition: background-color 0.2s ease, box-shadow 0.4s ease;
+}
+
+.experience .icon .icon-img.ttec{
+    background-color: rgba(24,24,26,255);
+    transition: background-color 0.2s ease, box-shadow 0.4s ease;
+}
+
+.experience .icon .icon-img.ttec:hover{
+    box-shadow: 0 0px 20px rgba(255, 255, 255, 0.4);
 }
 
 .experience .icon .icon-img.walker:hover{
@@ -169,7 +178,7 @@ hr{
 
 
 .experience .icon .icon-img.day5{
-    background-color: rgb(255, 255, 255);
+    background-color: rgba(24,24,26,255);
     transition: background-color 0.2s ease, box-shadow 0.4s ease;
 }
 
@@ -178,7 +187,7 @@ hr{
 }
 
 .experience .icon .icon-img.watstreet{
-    background-color: rgb(27, 27, 27);
+    background-color: rgba(24,24,26,255);
     transition: background-color 0.2s ease, box-shadow 0.4s ease;
 }
 
@@ -222,6 +231,35 @@ hr{
 }
 
 
+
+.slide-underline {
+  position: relative;
+  display: inline-block;
+  color: white;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.slide-underline::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -2px; /* Adjust as needed */
+  width: 100%;
+  height: 2px;
+  background: white;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.3s cubic-bezier(0.4,0,0.2,1);
+}
+
+.slide-underline:hover::after,
+.slide-underline:focus::after {
+  transform: scaleX(1);
+}
+
+
+
 .experience .icon .icon-img.site{
     background-color: rgba(255, 255, 255, 0.1);
 }
@@ -236,7 +274,7 @@ hr{
 }
 
 .experience .icon .icon-img.loo {
-    background-color: rgba(192,193,126,0.4);
+    background-color: rgba(24,24,26,255);
     transition: background-color 0.2s ease, box-shadow 0.3s ease;
   }
   
@@ -291,7 +329,7 @@ hr{
 }
 
 .experience .icon .icon-img.prgx{
-    background-color: rgba(204, 158, 235, 0.913);
+    background-color: rgba(24,24,26,255);
     transition: background-color 0.2s ease, box-shadow 0.4s ease;
 }
 .experience .icon .icon-img.prgx:hover{
@@ -812,4 +850,72 @@ hr{
     opacity: 1;
     transform: scaleX(1);
   }
+
+  .projects-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 32px;
+  margin: 32px 0;
+}
+
+.project-card {
+  background: #000000;
+  border-radius: 12px;
+  padding: 0 0 24px 0;
+  color: #fff;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow: hidden;
+}
+
+.project-img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  border-top-left-radius: 12px;
+  border-top-right-radius: 12px;
+  background: #222;
+  display: block;
+}
+
+.project-desc {
+  padding: 20px 18px 0 18px;
+  width: 100%;
+  text-align: left;
+}
+
+.project-card h3 {
+  margin-top: 0;
+  margin-bottom: 10px;
+  font-size: 1.2rem;
+  font-weight: 700;
+}
+
+.project-card p {
+  margin-bottom: 12px;
+  color: #bdbdbd;
+}
+
+.project-card a {
+  color: #fff;
+  text-decoration: underline;
+  font-weight: 500;
+  transition: color 0.2s;
+}
+
+.project-card a:hover {
+  color: #a0a0a0;
+}
+
+@media (max-width: 800px) {
+  .projects-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+  .project-img {
+    height: 140px;
+  }
+}
   
