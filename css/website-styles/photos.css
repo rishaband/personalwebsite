@@ -164,3 +164,15 @@ body {
     align-items: center;
     gap: 8px;
   }
+
+
+  .back-arrow {
+    position: absolute;
+    top: 10px;
+    left: 30px;
+    font-size: 5rem;
+    text-decoration: none;
+    color: black; 
+  
+  }
+  
