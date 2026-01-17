@@ -55,6 +55,8 @@
       </div>
     </div>
 
+    <hr style="margin-bottom: 40px;">
+
     <h3>Work Product</h3>
     <p>
       I focused on building data-driven infrastructure to streamline audit operations and enhance query efficiency. 
@@ -65,20 +67,18 @@
       This enabled smart partitioning of combined tables and supported efficient deduplication logic.
       This naturally required system stored procedures so I also worked on optimizing SSP’s within the server environment. 
     </p>
-    <h3>Internal Research</h3>
+    <h3>Machine Learning</h3>
     <p>Conducted research into Random Forest anomaly detection approach for client-statistic report analysis. An internal tool would use SQL scripts to produce stat reports
       which would then be sent back to the client. However, prior to that, analytics must be done on the niche details of the report such as "vendor_name", "vendor_population", 
       "field_population", etc to make sure they match up with previous years. This was a hefty manual task that required hours to finish. It can be simplified by using historical validated reports. We
       would train our model to predict whether a row needs QA attention(binary prediction or confidence score). Admittedly - this approach is more complicated than say a <a href="https://scikit-learn.org/stable/modules/generated/sklearn.svm.OneClassSVM.html" target="_blank" style="text-decoration: none; color: white; font-style: italic; font-weight: bold;">One-Class SVM</a> as
       we are using a variant of Random Forest, called <a href="https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.IsolationForest.html" target="_blank" style="text-decoration: none; color: white; font-style: italic; font-weight: bold;">Isolation Forest</a>. 
-      Overall, it was an insightful experience researching this approach and understanding it's relevance to 
+      Overall, it was an insightful experience implementing this approach and understanding it's relevance to 
       the data I was working with. 
     </p>
-    <h3>Results</h3>
-    <p>Saved on average ≈ <span style="font-weight: bold;">2.75 hours</span> per audit session</p>
-    <p>Reduced QA screening time by <span style="font-weight: bold;">2x</span></p>
+    
    
-    <hr>
+    <hr style="margin-top: 40px;">
 
     <footer class="footer">
       <div class="footer-bar">

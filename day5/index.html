@@ -35,10 +35,10 @@
 
         <h3>Tech</h3>
         <ul>
-          <li>Python</li>
-          <li>R</li>
-          <li>Azure</li>
-          <li>SQL</li>
+          <li>Python & various libraries</li>
+          <li>REST API's</li>
+          <li>Azure & AWS</li>
+          <li>PySpark & SQL</li>
           <li>SnowFlake</li>
         </ul>
       </div>
@@ -53,9 +53,72 @@
       </div>
     </div>
 
+    <hr style="margin-bottom: 40px;">
+
     <h3>Work Product</h3>
     <p>
-      Coming Soon ...
+      I worked on two major projects during this internship.  <br> <br>
+      <b>Project 1:</b> <span style="color: turquoise;">Data API on Top of an Analytics Warehouse</span>  <br> <br>
+
+      Laying the groundwork ..... <br> <br>
+
+      Most analytical systems that exist today are designed for <b>analysts</b> or folks who often work with data. They assume users will write SQL, understand schemas(star vs snowflake), and connect directly to a database. 
+      Now think about frontend development for a second ... <br><br> 
+      Well frontend development is largely built around API's, frontend frameworks & languages. Frontend engineers call API's to get data, save results, and perform other tasks. 
+      It is perfectly fine to issue multiple API requests to gather data that might come together to form a simple webpage. An important thing to note is that in this style of frontend engineering, we do not directly 
+      connect to a database, but rather interact with a middle "man" that converts our questions into <b>specific</b> queries which than retrieve the data and returns it to us in a formatted fashion. This is known as  
+      <b>three tier web applications.</b> <br> <br>
+
+      <img src="/images/3t.png" alt="" style="width: 100%; border-radius: 15px;"> <br> <br> 
+
+      
+
+      Now to what I worked on .... <br><br>
+
+      Instead of exposing data warehouse directly, I built a REST API that turns data into a <b>service</b>. At a high level, this sytem will introduce a clear seperation between data storage and data consumption. 
+      The warehouse will remain as an internal computational engine responsible for storing and processing large volumes of data. On top of it is where our REST API will sit and it will be the only interface that external
+      consumers interact with. Clients make requests describing what they want and the API handles everything else. <br><br>
+
+      This API plays several critical roles. Well first of all, it acts as a security boundary. The consumers never recieve direct access to our underlying data which prevents misuse and allows access to be tightly controlled. 
+      Secondly, it centralizes our data and transformations which ensures that all consumers see consistent outputs. And lastly, it allows the data model to evolve without breaking downstream applications. 
+      Let's take a look at the architecture of this system. <br><br>
+
+      <img src="/images/arch2.jpeg" alt="" style="width: 100%; border-radius: 15px; "> <br><br>
+
+      I mainly used AWS services to build this system. Amazon APIGW is used for the HTTP service while the AWS Lambda handles authentication for the APIGW endpoints and also serves as the data API logic layer. 
+      The data API logic layer simply translates the HTTP request into a Snowflake query and returns the result. Snowflake because that is where our data was primarily stored. And lastly, AWS Secrets Manager was used to store the 
+      application credentials for Snowflake. <br> <br>
+
+      Let’s take a step back and look at the data API logic more fundamentally. This architecture works well, but only if the REST API endpoints are designed with the nature of the data in mind.
+
+      When working with a small, well-understood dataset, endpoint design is fairly straightforward. However, this approach does not scale to large or unfamiliar datasets. In those cases, building endpoints around specific tables or use cases becomes a bit tedious.
+
+      The key realization is that an API endpoint is not a table or a query but rather a question that a system is allowed to ask. So instead of designing endpoints for individual datasets, I built a generalized REST API layer that exposes common analytical queries such as metrics, trends, and filtered summaries. This allows the same API structure to work across different data domains while remaining flexible for downstream consumers like automation and AI agents.
+      Now I wont go into the exact details of how these API endpoints are built because truthfully its a bit complicated(and also confidential?). I believe that this writeup is a good enough explaination of what I worked on. <br><br> Looking back at it, there is so much more to be done in this sytem. Just of the top of my head, I can think of better authentication, smoother translation of intent -> query from the API, and a more inclusive design of the API endpoints.
+      Overall, this project was a great learning experience for me and it taught me a variety of skills a Software Engineer should carry. 
+
+      <hr style="margin-top: 40px;">
+
+      <br><br>
+
+      <b>Project 2:</b> <span style="color: turquoise;">Data Migration & Medallion Architecture </span> <br> <br>
+
+      After working on exposing analytics through a governed data API, I shifted focus upstream to the problem of large-scale data ingestion. This project focused on migrating and consolidating over 200 API endpoints into a unified platform using a medallion architecture designed for long term growth. <br> <br>
+
+      The Bronze layer captured raw API responses exactly as received. Given the wide variation in response formats across endpoints, a key part of this work was standardizing how JSON responses were stored and grouped. Endpoints were categorized by response shape and behavior, which allowed ingestion logic to be reused across similar APIs rather than rewritten for each one. <br> <br>
+
+      The Silver layer handled normalization and structure. Semi-structured JSON was parsed into consistent relational schemas, with data quality checks, deduplication, and incremental load logic applied centrally. By grouping endpoints with similar JSON structures, transformations could be driven by metadata instead of hardcoded rules. <br> <br>
+
+      The Gold layer exposed business-ready datasets built around analytics use cases rather than source systems. These tables were optimized for reporting, trend analysis, and semantic modeling, making them directly consumable by BI tools, automation workflows, and AI agents. <br> <br>
+
+      A core design principle throughout the project was metadata-driven orchestration. Ingestion and transformation behavior was controlled through configuration rather than custom code, allowing new endpoints to be onboarded quickly while maintaining consistency and reliability across the platform. <br> <br>
+
+      The medallion architecture is a very well known transformation pipeline for data that is used across many organizations today. See below for a visualization.  <br> <br>
+      
+      <img src="/images/medallion.webp" style="width: 100%; border-radius: 15px;" alt=""> <br> <br>
+
+      <a href="https://techcommunity.microsoft.com/blog/fasttrackforazureblog/metadata-driven-pipelines-for-microsoft-fabric/3891651" style="text-decoration: none; color: white;" target="_blank"><b><em>This</em></b></a> is a really good resource for learning more about metadata-drive pipelines.
+
     </p>
  
     <hr>
@@ -67,7 +130,7 @@
           <span class="pulse-wrapper">
               <i class="fa-solid fa-circle fa-xs" style="color: #11ff00;"></i>
           </span>
-          Last updated 09/26/2025
+          Last updated 10/22/2025
         </span>
       </div>
     </footer>
