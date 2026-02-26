@@ -360,25 +360,42 @@ hr{
 
 @media (max-width: 640px) {
   .career-row {
-    gap: 10px;
+    display: grid;
+    grid-template-columns: minmax(118px, 1fr) minmax(108px, 1fr) auto;
+    column-gap: 10px;
+    row-gap: 4px;
+    align-items: center;
+    padding: 7px 10px;
   }
 
   .career-role {
-    min-width: 84px;
-    font-size: 14px;
+    min-width: 0;
+    font-size: 13px;
+    line-height: 1.25;
   }
 
   .career-link {
-    font-size: 15px;
+    font-size: 13px;
+    gap: 8px;
   }
 
   .career-link-static {
-    font-size: 15px;
+    font-size: 13px;
+    gap: 8px;
   }
 
   .career-read-more {
     font-size: 12px;
-    padding: 2px 8px;
+    padding: 3px 8px;
+    min-width: 78px;
+    text-align: center;
+    margin-left: 0;
+    justify-self: end;
+  }
+
+  .career-icon {
+    width: 22px;
+    height: 22px;
   }
 
 }

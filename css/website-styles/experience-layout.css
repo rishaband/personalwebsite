@@ -224,6 +224,7 @@ a {
   .experience-shell {
     grid-template-columns: 1fr;
     gap: 26px;
+    padding: 20px 16px 44px;
   }
 
   .toc-sidebar {
@@ -246,5 +247,44 @@ a {
 
   .section h2 {
     font-size: 28px;
+  }
+}
+
+@media (max-width: 640px) {
+  .experience-shell {
+    padding: 16px 12px 34px;
+    gap: 18px;
+  }
+
+  .toc-title {
+    margin-bottom: 8px;
+    font-size: 14px;
+  }
+
+  .toc-nav {
+    grid-template-columns: 1fr;
+    gap: 5px;
+  }
+
+  .article-header h1 {
+    font-size: 30px;
+    line-height: 1.08;
+  }
+
+  .article-meta {
+    margin-bottom: 14px;
+    font-size: 14px;
+  }
+
+  .section {
+    margin-top: 18px;
+  }
+
+  .memory-editor {
+    font-size: 0.82rem;
+    line-height: 1.35;
+    padding: 12px;
+    white-space: pre-wrap;
+    word-break: break-word;
   }
 }
