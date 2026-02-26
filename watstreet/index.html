@@ -3,79 +3,57 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Project Page</title>
+  <title>wat street</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="/css/website-styles/watstreet.css">
+  <link rel="stylesheet" href="/css/website-styles/experience-layout.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-
 </head>
 <body>
+  <div class="experience-shell">
+    <aside class="toc-sidebar">
+      <a class="toc-back" href="/index.html">&larr; home</a>
+      <p class="toc-title">contents</p>
+      <nav class="toc-nav" id="toc-nav"></nav>
+    </aside>
 
-  <div class="container">
-    <div class="top-nav">
-      <div> <a style="color: white;" href="/ford/index.html">&larr; Back</a></div>
-      <div><a href="/day5/index.html" style="color: white;">Next &rarr;</a></div>
-    </div>
+    <main class="article-content">
+      <section class="article-header section" data-toc-title="overview">
+        <h1>wat street</h1>
+        <p class="article-meta">quant dev & research</p>
+        <img class="hero-image hero-shadow-watstreet" src="/images/fixedstreet.png" alt="wat street cover image" />
+      </section>
 
-    <div class="title-section">
-      <h1><em>Wat Street</em></h1>
-      <p>Applied ML & Quantitative Researcher</p>
-    </div>
-
-    <div class="main-image">
-      <img src="/images/fixedstreet.png" alt="Project Screenshot" />
-    </div>
-
-    <div class="info-grid">
-      <div class="info-column">
-        <h3>Timeline</h3>
-        <ul>
-          <li>May 2025 – Present</li>
-          <li>Quantitative Design Team</li>
+      <section class="section" data-toc-title="timeline and tech">
+        <h2>timeline and tech</h2>
+        <p>may 2025 - present · quantitative design team</p>
+        <ul class="chip-list">
+          <li>python</li>
+          <li>pandas</li>
+          <li>numpy</li>
+          <li>yfinance</li>
+          <li>statsmodels</li>
         </ul>
+      </section>
 
-        <h3>Tech</h3>
-        <ul>
-          <li>Python</li>
-          <li>PyTorch</li>
-          <li>TensorFlow</li>
-          <li>Keras</li>
-          <li>Scikit-Learn</li>
-          <li>Pandas & NumPy</li>
-        </ul>
-      </div>
-
-      <div class="info-column overview">
-        <h3>Overview</h3>
+      <section class="section" data-toc-title="role">
+        <h2>role</h2>
         <p>
-          Wat Street is a student run Quantitative R&D team which is backed by the <a href="https://uwaterloo.ca/math-endowment-fund/" target="_blank" style="text-decoration: none; color: white; font-style: italic;">MEF <i class="fa-solid fa-arrow-up-right-from-square" style="color: #ffffff;"></i></a>
-          . We focus mostly on researching and developing innovative strategies in quantitative finance, leveraging mathematics, statistics, and machine learning to analyze markets and build trading models. I am a part 
-          of the Quantitative Development team where we work on integrating Machine Learning into trading pipelines, portfolio optimization, and approach backtesting.
+          wat street is a student-run quantitative r&d team backed by the
+          <a href="https://uwaterloo.ca/math-endowment-fund/" target="_blank">mef <i class="fa-solid fa-arrow-up-right-from-square"></i></a>.
+          we focus on researching and developing strategies in quantitative finance through mathematics, statistics, and
+          machine learning. i am part of the quantitative development team where we integrate machine learning into trading
+          pipelines, portfolio optimization, and backtesting. currently working on volatility modeling using the har-rv model.
         </p>
-        <a href="https://watstreet.netlify.app/" target="_blank" style="color: white; text-decoration: none;">Website <i class="fa-solid fa-arrow-up-right-from-square" style="color: #ffffff;"></i></a>
-      </div>
-    </div>
+        <p><a href="https://watstreet.netlify.app/" target="_blank">website <i class="fa-solid fa-arrow-up-right-from-square"></i></a></p>
+      </section>
 
-    <h3>Work Product</h3>
-    <p>
-      Coming Soon ...
-    </p>
- 
-    <hr>
-
-    <footer class="footer">
-      <div class="footer-bar">
-        <a href="/index.html" class="refbacklast" style="text-decoration: none;">Rishab Anand</a>
-        <span class="right-status">
-          <span class="pulse-wrapper">
-              <i class="fa-solid fa-circle fa-xs" style="color: #11ff00;"></i>
-          </span>
-          Last updated 09/26/2025
-        </span>
-      </div>
-    </footer>
-
+      <section class="section" data-toc-title="work product">
+        <h2>work product</h2>
+        <p>coming soon.</p>
+      </section>
+    </main>
   </div>
 
+  <script src="/js/experience-layout.js"></script>
 </body>
 </html>

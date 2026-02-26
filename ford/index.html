@@ -3,73 +3,56 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Project Page</title>
+  <title>ford</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="/css/website-styles/ford.css">
+  <link rel="stylesheet" href="/css/website-styles/experience-layout.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-
 </head>
 <body>
+  <div class="experience-shell">
+    <aside class="toc-sidebar">
+      <a class="toc-back" href="/index.html">&larr; home</a>
+      <p class="toc-title">contents</p>
+      <nav class="toc-nav" id="toc-nav"></nav>
+    </aside>
 
-  <div class="container">
-    <div class="top-nav">
-      <div> <a style="color: white;" href="/index.html">&larr; Home</a></div>
-      <div><a href="/watstreet/index.html" style="color: white;">Next &rarr;</a></div>
-    </div>
+    <main class="article-content">
+      <section class="article-header section" data-toc-title="overview">
+        <h1>ford</h1>
+        <p class="article-meta">software engineer intern</p>
+        <img class="hero-image hero-shadow-ford" src="/images/ford.avif" alt="ford cover image" />
+      </section>
 
-    <div class="title-section">
-      <h1><em>Ford</em></h1>
-      <p>Software Engineering Intern</p>
-    </div>
-
-    <div class="main-image">
-      <img src="/images/ford.avif" alt="Project Screenshot" />
-    </div>
-
-    <div class="info-grid">
-      <div class="info-column">
-        <h3>Timeline</h3>
-        <ul>
-          <li>Jan. 2026 – Apr. 2026</li>
+      <section class="section" data-toc-title="timeline and tech">
+        <h2>timeline and tech</h2>
+        <p>january 2026 - april 2026</p>
+        <ul class="chip-list">
+          <li>c++</li>
+          <li>c</li>
+          <li>python</li>
+          <li>postgresql</li>
+          <li>ml microservices architecture</li>
         </ul>
+      </section>
 
-        <h3>Tech</h3>
-        <ul>
-          <li>Python</li>
-          <li>PostgreSQL</li>
-          <li>ML Architecture - Various ML Tools</li>
-        </ul>
-      </div>
-
-      <div class="info-column overview">
-        <h3>Overview</h3>
+      <section class="section" data-toc-title="role">
+        <h2>role</h2>
         <p>
-            Ford Motor Company is a global Fortune 50 automotive leader, pioneering advancements in electric vehicles, mobility solutions, and software-defined vehicle technology. I am joining the Automotive ML Validation team as a Software Engineer Intern, where I will contribute to the development and testing of machine learning systems that enhance vehicle functionality, reliability, and automation capabilities.
+          ford motor company is a global fortune 50 automotive leader, pioneering advancements in electric vehicles,
+          mobility solutions, and software-defined vehicle technology. i joined the vehicle root cause analysis team as a
+          software engineer intern, where i will contribute to development and testing of machine learning systems that
+          enhance vehicle functionality, reliability, and automation capabilities. i will also be working on safety-critical software systems(in c/c++)
         </p>
-        <a href="https://www.ford.com/" target="_blank" style="color: white; text-decoration: none;">Website <i class="fa-solid fa-arrow-up-right-from-square" style="color: #ffffff;"></i></a>
-      </div>
-    </div>
+        <p><a href="https://www.ford.com/" target="_blank">website <i class="fa-solid fa-arrow-up-right-from-square"></i></a></p>
+      </section>
 
-    <h3>Work Product</h3>
-    <p>
-      Coming Soon ...
-    </p>
- 
-    <hr>
-
-    <footer class="footer">
-      <div class="footer-bar">
-        <a href="/index.html" class="refbacklast" style="text-decoration: none;">Rishab Anand</a>
-        <span class="right-status">
-          <span class="pulse-wrapper">
-              <i class="fa-solid fa-circle fa-xs" style="color: #11ff00;"></i>
-          </span>
-          Last updated 10/22/2025
-        </span>
-      </div>
-    </footer>
-
+      <section class="section" data-toc-title="work product">
+        <h2>work product</h2>
+        <p>coming soon.</p>
+      </section>
+    </main>
   </div>
 
+  <script src="/js/experience-layout.js"></script>
 </body>
 </html>

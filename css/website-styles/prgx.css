@@ -4,6 +4,7 @@ body {
   font-family: 'Inter', sans-serif;
   background-color: #0d0d0d;
   color: #f2f2f2;
+  text-transform: lowercase;
   line-height: 1.6;
 }
 

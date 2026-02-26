@@ -3,104 +3,147 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Project Page</title>
+  <title>stealth startup</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="/css/website-styles/walker.css">
+  <link rel="stylesheet" href="/css/website-styles/experience-layout.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-
 </head>
 <body>
+  <div class="experience-shell">
+    <aside class="toc-sidebar">
+      <a class="toc-back" href="/index.html">&larr; home</a>
+      <p class="toc-title">contents</p>
+      <nav class="toc-nav" id="toc-nav"></nav>
+    </aside>
 
-  <div class="container">
-    <div class="top-nav">
-      <div> <a style="color: white;" href="/prgx/index.html">&larr; Back</a></div>
-      <div><a href="/index.html" style="color: white;">Home &rarr;</a></div>
-    </div>
+    <main class="article-content narrative-flow">
+      <section class="article-header section" data-toc-title="overview">
+        <h1>stealth startup</h1>
+        <p class="article-meta">performance engineer intern</p>
+        <img class="hero-image hero-shadow-stealth" src="/images/stealthimg.webp" alt="stealth startup cover image" />
 
-    <div class="title-section">
-      <h1><em>Walker Industries</em></h1>
-      <p>Software Engineering Intern</p>
-    </div>
+      </section>
 
-    <div class="main-image">
-      <img src="/images/Screenshot 2024-09-21 at 10.30.00 PM.png" alt="Project Screenshot" />
-    </div>
-
-    <div class="info-grid">
-      <div class="info-column">
-        <h3>Timeline</h3>
-        <ul>
-          <li>Jan. 2024 – Apr. 2024</li>
-          
+      <section class="section" data-toc-title="timeline and tech">
+        <h2>timeline and tech</h2>
+        <p>january 2024 - april 2024</p>
+        <ul class="chip-list">
+          <li>python</li>
+          <li>cuda</li>
+          <li>pytorch</li>
+          <li>huggingface</li>
+          <li>various other libraries and frameworks(ml and python)</li>
         </ul>
+      </section>
 
-        <h3>Tech</h3>
-        <ul>
-          <li>C#</li>
-          <li>Python</li>
-          <li>TensorFlow</li>
-          <li>HuggingFace</li>
-        </ul>
-      </div>
-
-      <div class="info-column overview">
-        <h3>Overview</h3>
+      <section class="section" data-toc-title="role">
+        <h2>role</h2>
         <p>
-          Walker Industries is a Miami-based VR/XR startup working on integrating operating systems into extended and virtual reality. I joined the <a href="https://walkerdev.itch.io/project-replicant" target="_blank" style="text-decoration: none; color: white; font-style: italic;">Project Replicant <i class="fa-solid fa-arrow-up-right-from-square" style="color: #ffffff;"></i></a> &nbsp; team working on LLM local ingestion. 
-          A part of Project Replicant was fully open sourced by the Walker Industries developers. You may contribute <a href="https://github.com/Walker-Industries-RnD/Project-Replicant" target="_blank" style="text-decoration: none; color: white; font-style: italic;">here.</a>
+          stealth startup that i worked for is a miami-based vr/xr startup working on integrating operating systems into extended and virtual reality.
+          i joined the project replicant team working on local llm inference. unfortunately, i cannot disclouse more information about the company/project due to confidentiality reasons. i will try to update this section as best as i can by taking a more generalized approach to work product.
         </p>
-        <a href="https://www.walkerindustries.xyz/" target="_blank" style="color: white; text-decoration: none;">Website <i class="fa-solid fa-arrow-up-right-from-square" style="color: #ffffff;"></i></a>
-      </div>
-    </div>
-    <hr style="margin-bottom: 40px;">
-    <h3>Work Product</h3>
-    <p>
-        I began working on data collection and formatting using python & web scraping. This was followed by a filtering stage to focus on high-quality and domain specific content since the LLM itself was domain-specific. 
-        At the time, OpenAI released a new query(input) format called ChatML or Chat Markup Language. Traditionally, LLM's would tackle unstructured data but OpenAI's initial v0 models 
-        expected the query to be in the form of ChatML. See below for example:
-        <pre style="background-color: #0d0d0d; color: #dacc15; padding: 16px; border-radius: 8px; font-family: monospace; overflow-x: auto; font-size: 0.9rem;">
-            [
-              {"token": "&lt;|im_start|&gt;"},
-              "system\nYou are ChatGPT, a large language model trained by OpenAI. 
-              {"token": "&lt;|im_end|&gt;"}, "\n",
-              {"token": "&lt;|im_start|&gt;"},
-              "user\nHow are you",
-              {"token": "&lt;|im_end|&gt;"}, "\n",
-              {"token": "&lt;|im_start|&gt;"},
-              "assistant\nI am doing well!",
-              {"token": "&lt;|im_end|&gt;"}, "\n",
-              {"token": "&lt;|im_start|&gt;"},
-              "user\nHow are you now?",
-              {"token": "&lt;|im_end|&gt;"}, "\n"
-            ]
-        </pre>
+      </section>
 
-        Although this is a bit more detailed formatting, ChatML follows this general structure. The data that we collected with scraping was then formatted using tags like &lt|system|> & &lt|user|>. 
-        This was then further used for a modified RAG pipeline which used a Vector DB for semantic search and retrieval. The LLM in use was a transformer and the context of the conversation
-        between the AI & the User was guaranteed to remain within the VR/XR domain. This meant that the volume of the training data was relatively small. When the conversation between the AI & User concluded,
-        post processing was done on a transcript that was generated. It included running the transcript through a light-weight prebuilt NLP model to extract key details. I also worked on building this process "session-aware",
-        meaning that each conversation transcript was stored as an embedding in the Vector DB which allowed the system to re-inject prior conversation context into an ongoing conversation. This was possible as every session generated a unique <span style="color: rgb(84, 155, 84);">chat_name</span>. 
-        The processed transcripts would be stored in the Vector DB with metadata tags like {<span style="color: rgb(84, 155, 84);">chat_name</span>: "X", <span style="color: rgb(84, 155, 84);">timestamp</span>: "T", vector: [...]}.
-        Now when a user wants to recall an old conversation "X", we can just filter our Vector DB for <span style="color: rgb(84, 155, 84);">chat_name</span>=="X" - provided that the user is using the EXACT metadata tag which was 
-        saved from the previous chat. 
-    </p>
-    
-   
-    <hr>
+      <section class="section" data-toc-title="work product">
+        <h2>work product</h2>
+        <p>
+          working at a startup meant wearing a lot of hats. one of my key project areas was real-time voice conversion,
+          and i spent time understanding and optimizing the stack from model architecture to runtime performance.
+        </p>
+      </section>
 
-    <footer class="footer">
-      <div class="footer-bar">
-        <a href="/index.html" class="refbacklast" style="text-decoration: none;">Rishab Anand</a>
-        <span class="right-status">
-          <span class="pulse-wrapper">
-              <i class="fa-solid fa-circle fa-xs" style="color: #11ff00;"></i>
-          </span>
-          Last updated 09/26/2025
-        </span>
-      </div>
-    </footer>
+      <section class="section" data-toc-title="rvc conversion">
+        <h2 class="subtopic-heading">voice conversion fundamentals</h2>
+        <p>
+          like i said, one of the main technical problems i worked around was real-time voice conversion (rvc), where the goal is to
+          transform one speaker's voice characteristics into another speaker's identity while preserving the linguistic
+          content. conceptually, this maps to source-filter speech theory: the source signal (vocal vibration) is preserved
+          as content, while vocal tract characteristics are transformed to shift identity. in practice, that means modeling
+          and controlling pitch/f0, timbre/spectral envelope, and prosody/duration without losing intelligibility.
+        </p>
+        <p>
+          modern rvc systems use neural encoder-decoder pipelines rather than older statistical approaches. the encoder
+          extracts content-oriented latent features, speaker embeddings represent target identity, and the decoder/vocoder
+          reconstructs audio with the desired voice profile. training quality comes from balancing reconstruction objectives
+          with adversarial/perceptual constraints so converted audio sounds natural rather than robotic.
+        </p>
+      </section>
 
+      <section class="section">
+        <h2 class="subtopic-heading">inference and architecture</h2>
+        <p>
+          a big part of the work was understanding inference as a compute problem, not just a model problem. once training
+          is complete, runtime is effectively a forward pass through large matrix operations and nonlinear transformations.
+          as model size grows, inference cost scales quickly, so architecture choices directly affect latency budgets.
+          i spent time thinking about this from both sides: model-level representation quality and systems-level execution cost.
+        </p>
+        <p>
+          the original deployment shape relied on cloud api calls. that architecture is convenient, but for real-time audio
+          it introduces unavoidable latency from network round-trip, serialization/deserialization, queue time, and tls/session
+          overhead. even with a fast backend, physics puts a floor under internet latency, which is the wrong profile for
+          interactive voice loops.
+        </p>
+        <p class="memory-title">latency sources in cloud api:</p>
+        <pre class="memory-editor">total latency (typical): ~500 ms
+
+network latency: ~100-200 ms (this is kinda slow, ideally you'd want <50ms regionally!!!!)
+  propagation delay:      speed-of-light bound in fiber
+  transmission delay:     time to place bits on wire
+  queuing delay:          router/buffer wait time
+  round-trip time (rtt):  request + response path
+
+serialization/deserialization: ~10-30 ms (depends on payload)
+server queue time:            ~50-100 ms (on shared infra)
+inference time (cloud):       ~100-200 ms
+connection setup (tls/auth):  well?? TLS handshake adds ~1 RTT if connection not reused
+
+</pre>
+        <p>
+          why this stays slow: even perfect infrastructure cannot beat physics. network distance enforces a hard
+          latency floor, so cloud-first inference struggles to hit strict real-time interaction targets.
+        </p>
+      </section>
+
+      <section class="section">
+        <h2 class="subtopic-heading">local runtime strategy</h2>
+        <p>
+          the most important shift was moving inference local. edge execution removed the network path entirely and collapsed
+          the latency chain to device-local compute and memory movement. this is where onnx and onnx runtime mattered most:
+          onnx gave us a portable graph format, and the runtime gave us an optimized execution engine with graph-level
+          transformations like operator fusion, constant folding, and backend-specific scheduling. technically these are all optimizations that onnx runtimes does before the graph execution so the theory is not all that important. a good one to know is operator fusion because that combines multiple operations into one so you save memory and have fewer kernel launches.
+          quantization is also good to know as it reduces the precision of the model so you can run it on cheaper hardware like a cpu as compared to a stronger gpu.
+        </p>
+        <p class="memory-title">memory hierarchy:</p>
+        <pre class="memory-editor">cpu registers:      ~0.5 ns
+l1 cache:           ~1 ns
+l2 cache:           ~4 ns
+l3 cache:           ~10 ns
+ram:                ~100 ns
+ssd:                ~100 μs
+network (local):    ~1 ms
+</pre>
+        <p>local inference stays within the fastest memory tiers.</p>
+       
+      </section>
+
+      <section class="section">
+        <h2 class="subtopic-heading">performance engineering takeaways</h2>
+        <p>
+          the biggest learning was that latency optimization is always full-stack. meaningful gains came from network removal,
+          model/runtime optimization, and system-level execution discipline together, not from one isolated trick. for voice
+          systems, percentile latency matter more than average latency, so measurement had to focus on cold vs warm
+          paths
+        </p>
+
+        <br>
+        <hr>
+
+        <p>this wasnt the only project i worked on, but it was probably the most technically challenging. there are other cool things i did like tts ner(named entity recognition), chat markup language prompt ingestions, and fast api optimizations but im not sure if they deserve their own writeup lol. i mean afterall these tasks were related to the same project(rvc) so im sure you can piece it together!</p>
+        
+      </section>
+    </main>
   </div>
 
+  <script src="/js/experience-layout.js"></script>
 </body>
 </html>
