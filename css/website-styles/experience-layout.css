@@ -92,9 +92,9 @@ a {
 
 .hero-shadow-ford {
   box-shadow:
-    0 0 0 1px rgba(72, 117, 184, 0.35),
-    0 10px 28px rgba(33, 76, 143, 0.28),
-    0 0 42px rgba(79, 146, 236, 0.2);
+    0 0 0 1px rgba(168, 171, 176, 0.35),
+    0 10px 28px rgba(48, 52, 58, 0.34),
+    0 0 42px rgba(122, 126, 133, 0.2);
 }
 
 .hero-shadow-watstreet {
