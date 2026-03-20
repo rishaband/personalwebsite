@@ -21,8 +21,8 @@ a {
   margin: 0 auto;
   padding: 28px 24px 64px;
   display: grid;
-  grid-template-columns: 250px minmax(0, 1fr);
-  gap: 44px;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 0;
 }
 
 .toc-sidebar {
@@ -36,6 +36,15 @@ a {
   margin-bottom: 18px;
   color: #9f9f9f;
   text-decoration: none;
+  text-shadow: 0 0 0 rgba(255, 255, 255, 0);
+  transition: color 180ms ease, text-shadow 180ms ease;
+}
+
+.toc-back:hover {
+  color: #ffffff;
+  text-shadow:
+    0 0 8px rgba(255, 255, 255, 0.75),
+    0 0 18px rgba(255, 255, 255, 0.35);
 }
 
 .toc-title {
@@ -69,6 +78,7 @@ a {
 
 .article-content {
   max-width: 820px;
+  margin: 0 auto;
 }
 
 .article-header h1 {
@@ -190,6 +200,17 @@ a {
   width: 100%;
   border-radius: 10px;
   margin: 12px 0;
+  transition: transform 160ms ease;
+  cursor: zoom-in;
+}
+
+.hero-image {
+  transition: transform 160ms ease;
+}
+
+.inline-image:hover,
+.hero-image:hover {
+  transform: scale(1.01);
 }
 
 .tabbed-list {
@@ -220,10 +241,76 @@ a {
   white-space: pre;
 }
 
+/* Click-to-zoom image modal */
+.image-lightbox {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.72);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  padding: 24px;
+}
+
+.image-lightbox.open {
+  display: flex;
+}
+
+.image-lightbox__inner {
+  width: 100%;
+  max-width: 980px;
+  position: relative;
+}
+
+.image-lightbox__img {
+  width: 100%;
+  max-height: 86vh;
+  object-fit: contain;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  box-shadow: 0 22px 60px rgba(0, 0, 0, 0.5);
+  transform: scale(0.98);
+  opacity: 0;
+  transition: transform 180ms ease, opacity 180ms ease;
+  position: relative;
+  z-index: 1;
+}
+
+.image-lightbox.open .image-lightbox__img {
+  transform: scale(1);
+  opacity: 1;
+}
+
+.image-lightbox__close {
+  position: fixed;
+  right: 22px;
+  top: 18px;
+  z-index: 10001;
+  width: 40px;
+  height: 40px;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  background: rgba(20, 20, 20, 0.65);
+  color: #fff;
+  cursor: pointer;
+  font-size: 26px;
+  line-height: 38px;
+  padding: 0;
+  transition: box-shadow 160ms ease, transform 160ms ease,
+    background-color 160ms ease;
+}
+
+.image-lightbox__close:hover {
+  background: rgba(30, 30, 30, 0.78);
+  box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.12);
+  transform: translateY(-1px);
+}
+
 @media (max-width: 960px) {
   .experience-shell {
     grid-template-columns: 1fr;
-    gap: 26px;
+    gap: 0;
     padding: 20px 16px 44px;
   }
 
