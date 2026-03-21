@@ -358,6 +358,97 @@ hr{
   object-fit: cover;
 }
 
+/* Homepage signature (hero headline) */
+.signature-block {
+  margin: 18px 0 0;
+  padding: 10px 8px 4px;
+  max-width: 100%;
+}
+
+h1.signature-block {
+  margin: 0;
+  font-size: inherit;
+  font-weight: normal;
+  line-height: normal;
+  border: none;
+  overflow: visible;
+}
+
+.signature-block--hero {
+  padding: 4px 0 10px;
+}
+
+h1.signature-block.signature-block--hero {
+  margin: 40px 0 0;
+}
+
+.signature-text {
+  display: inline-block;
+  font-family: "Playwrite RO", cursive;
+  font-size: clamp(1.42rem, 4.4vw, 2rem);
+  font-weight: 400;
+  font-variation-settings: "wght" 400;
+  color: #141414;
+  letter-spacing: 0.03em;
+  /* Room for ascenders/descenders: clip-path clips to this box, and stroke/shadow extend past glyph bounds */
+  line-height: 1.5;
+  padding: 0.55em 0.12em 0.3em 0;
+  box-sizing: border-box;
+  /* Playwrite max weight is 400 — fake a heavier pen with stroke + tight offsets */
+  -webkit-text-stroke: 1.12px #141414;
+  paint-order: stroke fill;
+  text-shadow:
+    0.5px 0 0 #141414,
+    -0.5px 0 0 #141414,
+    0 0.45px 0 #141414,
+    0 -0.45px 0 #141414,
+    0.38px 0.38px 0 #141414,
+    -0.38px 0.38px 0 #141414,
+    0.38px -0.38px 0 #141414,
+    -0.38px -0.38px 0 #141414;
+  clip-path: inset(0 100% 0 0);
+  animation: signatureReveal 2.35s cubic-bezier(0.42, 0, 0.2, 1) 0.45s forwards;
+}
+
+.signature-underline {
+  display: block;
+  height: 1px;
+  margin-top: 8px;
+  max-width: min(240px, 85%);
+  background: linear-gradient(
+    90deg,
+    rgba(0, 0, 0, 0.5),
+    rgba(0, 0, 0, 0.08)
+  );
+  transform: scaleX(0);
+  transform-origin: left center;
+  animation: signatureUnderline 0.9s cubic-bezier(0.42, 0, 0.2, 1) 2.15s forwards;
+}
+
+@keyframes signatureReveal {
+  to {
+    clip-path: inset(0 0% 0 0);
+  }
+}
+
+@keyframes signatureUnderline {
+  to {
+    transform: scaleX(1);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .signature-text {
+    animation: none;
+    clip-path: inset(0 0% 0 0);
+  }
+
+  .signature-underline {
+    animation: none;
+    transform: scaleX(1);
+  }
+}
+
 @media (max-width: 640px) {
   .career-row {
     display: grid;
