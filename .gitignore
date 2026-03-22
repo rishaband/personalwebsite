@@ -1,1 +1,3 @@
-images/
+# Site images live in images/ and must be committed for deploys (GitHub Pages, etc.).
+# Add specific ignores here if needed, e.g. large source files:
+# *.psd
