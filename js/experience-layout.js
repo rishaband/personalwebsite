@@ -1,9 +1,10 @@
-document.addEventListener("DOMContentLoaded", function () {
+function initArticleLayout() {
   // -------------------------
   // Table of contents behavior
   // -------------------------
   var toc = document.getElementById("toc-nav");
   if (toc) {
+    toc.innerHTML = "";
     var sections = Array.from(
       document.querySelectorAll(".article-content [data-toc-title]")
     );
@@ -69,7 +70,7 @@ document.addEventListener("DOMContentLoaded", function () {
   // -------------------------
   var images = Array.from(
     document.querySelectorAll(
-      ".article-content img.hero-image, .article-content img.inline-image"
+      ".article-content img.hero-image, .article-content img.inline-image, .article-body img.inline-image"
     )
   );
   if (!images.length) return;
@@ -133,4 +134,11 @@ document.addEventListener("DOMContentLoaded", function () {
       closeLightbox();
     }
   });
+}
+
+window.initArticleLayout = initArticleLayout;
+
+document.addEventListener("DOMContentLoaded", function () {
+  if (document.getElementById("article-body")) return;
+  initArticleLayout();
 });

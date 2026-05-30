@@ -1,0 +1,16 @@
+:root {
+  --font-sans: "Source Sans 3", sans-serif;
+  --bs-font-sans-serif: var(--font-sans);
+  --bs-body-font-family: var(--font-sans);
+}
+
+html {
+  font-family: var(--font-sans);
+  font-optical-sizing: auto;
+  font-style: normal;
+}
+
+body {
+  font-family: var(--font-sans);
+  font-optical-sizing: auto;
+}

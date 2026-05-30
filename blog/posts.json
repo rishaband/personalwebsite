@@ -1,0 +1,10 @@
+{
+  "posts": [
+    {
+      "slug": "aluverilog",
+      "title": "building an alu in verilog",
+      "date": "2025-05-28",
+      "description": "implementing an alu from scratch in verilog"
+    }
+  ]
+}

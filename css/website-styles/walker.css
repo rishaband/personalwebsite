@@ -1,7 +1,7 @@
 body {
     margin: 0;
     padding: 0;
-    font-family: 'Inter', sans-serif;
+    font-family: var(--font-sans);
     background-color: #0d0d0d;
     color: #f2f2f2;
     text-transform: lowercase;
@@ -175,7 +175,7 @@ body {
   
   .refbacklast {
     position: relative;
-    font-family: 'Cal Sans', sans-serif;
+    font-family: var(--font-sans);
     font-style: italic;
     color: #aaa; /* or any base color */
     text-decoration: none;
@@ -211,7 +211,7 @@ body {
     justify-content: space-between;
     align-items: center;
     padding: 20px 40px;
-    font-family: 'Cal Sans', sans-serif;
+    font-family: var(--font-sans);
     color: white;
   }
   

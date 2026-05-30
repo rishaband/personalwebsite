@@ -6,16 +6,13 @@
     <title>Rishab Anand</title>
     <link rel="stylesheet" href="css/css-bootstrap/bootstrap.css">
     <link rel="stylesheet" href="css/website-styles/styles.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:ital,wght@0,200..900;1,200..900&display=swap" rel="stylesheet">
     <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="icon" type="image/png" href="f-sig.png">
     <link rel="stylesheet" href="css/animate.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cal+Sans&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Playwrite+RO:wght@100..400&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Lilita+One&family=Playwrite+RO:wght@100..400&display=swap" rel="stylesheet">
 
 </head>
  
@@ -46,11 +43,8 @@
         <div class="content">
     
             <div class="label-content">
-                <h1 class="signature-block signature-block--hero name" id="name" data-text="Rishab Anand">
-                    <span class="signature-text">rishab anand</span>
-                    <span class="signature-underline" aria-hidden="true"></span>
-                </h1>
-                <h2 style="margin: 6px 0 14px; font-size: 13px; font-weight: 600; color: #1f1f1f;">interested in full stack development, low level systems programming, and quantitative development</h2>
+                <h1 class="site-name" id="name">rishab anand</h1>
+                <h2 class="site-tagline">interested in full stack development, low level systems programming, and quantitative development</h2>
 
 
     
@@ -79,71 +73,86 @@
                 <div class="career-stack">
                     <p class="career-group">currently</p>
 
-                    <div class="career-row">
+                    <a class="career-row" href="https://uwaterloo.ca/" target="_blank" rel="noopener noreferrer">
                         <span class="career-role">computer engineering</span>
-                        <a class="career-link no-underline" href="https://uwaterloo.ca/" target="_blank">
+                        <span class="career-org">
                             <img class="career-icon" src="images/waterloo.svg" alt="University of Waterloo logo">
                             <span>uwaterloo</span>
-                        </a>
-                    </div>
-
-                    
-
-                    <div class="career-row">
-                        <span class="career-role">quant dev & research</span>
-                        <span class="career-link-static">
-                            <img class="career-icon" src="images/watst.webp" alt="Wat Street logo">
-                            <span>watstreet</span>
                         </span>
-                        <a class="career-read-more" href="watstreet/index.html">read more</a>
-                    </div>
+                    </a>
+
+                    <a class="career-row career-row--hint" href="watstreet/index.html">
+                        <span class="career-role">quant dev & research</span>
+                        <span class="career-org-group">
+                            <span class="career-org">
+                                <img class="career-icon" src="images/watst.webp" alt="Wat Street logo">
+                                <span>watstreet</span>
+                            </span>
+                            <span class="row-hint" aria-hidden="true">read more</span>
+                        </span>
+                    </a>
 
                     <p class="career-group">previously</p>
 
-                    <div class="career-row">
+                    <a class="career-row career-row--hint" href="ford/index.html">
                         <span class="career-role">software engineer intern</span>
-                        <span class="career-link-static">
-                            <img class="career-icon" src="images/fordimg.png" alt="Ford logo">
-                            <span>ford</span>
+                        <span class="career-org-group">
+                            <span class="career-org">
+                                <img class="career-icon" src="images/fordimg.png" alt="Ford logo">
+                                <span>ford</span>
+                            </span>
+                            <span class="row-hint" aria-hidden="true">read more</span>
                         </span>
-                        <a class="career-read-more" href="ford/index.html">read more</a>
-                    </div>
+                    </a>
 
-                    <div class="career-row">
+                    <a class="career-row career-row--hint" href="jnj/index.html">
                         <span class="career-role">software engineer intern</span>
-                        <span class="career-link-static">
-                            <img class="career-icon" src="https://www.jnj.com/favicon.ico" alt="Johnson and Johnson">
-                            <span>johnson & johnson</span>
+                        <span class="career-org-group">
+                            <span class="career-org">
+                                <img class="career-icon" src="https://www.jnj.com/favicon.ico" alt="Johnson and Johnson">
+                                <span>johnson & johnson</span>
+                            </span>
+                            <span class="row-hint" aria-hidden="true">read more</span>
                         </span>
-                        <a class="career-read-more" href="jnj/index.html">read more</a>
-                    </div>
+                    </a>
 
-                    <div class="career-row">
+                    <a class="career-row career-row--hint" href="day5/index.html">
                         <span class="career-role">software engineer intern</span>
-                        <span class="career-link-static">
-                            <img class="career-icon" src="images/d5a-finals-20-e1597176134107.webp" alt="day5 analytics logo">
-                            <span>day5 analytics</span>
+                        <span class="career-org-group">
+                            <span class="career-org">
+                                <img class="career-icon" src="images/d5a-finals-20-e1597176134107.webp" alt="day5 analytics logo">
+                                <span>day5 analytics</span>
+                            </span>
+                            <span class="row-hint" aria-hidden="true">read more</span>
                         </span>
-                        <a class="career-read-more" href="day5/index.html">read more</a>
-                    </div>
+                    </a>
 
-                    <div class="career-row">
+                    <a class="career-row career-row--hint" href="prgx/index.html">
                         <span class="career-role">software engineer intern</span>
-                        <span class="career-link-static">
-                            <img class="career-icon" src="images/ardian.jpg" alt="PRGX logo">
-                            <span>ardian</span>
+                        <span class="career-org-group">
+                            <span class="career-org">
+                                <img class="career-icon" src="images/ardian.jpg" alt="PRGX logo">
+                                <span>ardian</span>
+                            </span>
+                            <span class="row-hint" aria-hidden="true">read more</span>
                         </span>
-                        <a class="career-read-more" href="prgx/index.html">read more</a>
-                    </div>
+                    </a>
 
-                    <div class="career-row">
+                    <a class="career-row career-row--hint" href="walker/index.html">
                         <span class="career-role">performance engineer intern</span>
-                        <span class="career-link-static">
-                            <img class="career-icon" src="images/stealth_startup_tlv_logo.jpeg" alt="Stealth Startup logo">
-                            <span>stealth startup</span>
+                        <span class="career-org-group">
+                            <span class="career-org">
+                                <img class="career-icon" src="images/stealth_startup_tlv_logo.jpeg" alt="Stealth Startup logo">
+                                <span>stealth startup</span>
+                            </span>
+                            <span class="row-hint" aria-hidden="true">read more</span>
                         </span>
-                        <a class="career-read-more" href="walker/index.html">read more</a>
-                    </div>
+                    </a>
+                </div>
+
+                <div class="blog-stack" id="blog">
+                    <p class="career-group">writings</p>
+                    <div id="blog-list" class="blog-list" aria-live="polite"></div>
                 </div>
 
             </div>
@@ -168,7 +177,30 @@
     <script src="https://cdn.jsdelivr.net/npm/@floating-ui/core@1.6.0"></script>
     <script src="https://cdn.jsdelivr.net/npm/@floating-ui/dom@1.6.3"></script>
     <script src="javascript/js/bootstrap.js"></script>
+    <script src="js/blog-list.js"></script>
     <script src="js/main.js"> </script>
+    <script>
+      (function () {
+        var headerLogo = document.querySelector('.header-logo');
+        var logoLink   = document.querySelector('.header-logo a');
+
+        if (!headerLogo || !logoLink) return;
+
+        headerLogo.addEventListener('mousemove', function (e) {
+          var rect     = headerLogo.getBoundingClientRect();
+          var cursorX  = e.clientX - rect.left;
+          var maxShift = rect.width - logoLink.offsetWidth;
+          var shift    = Math.max(0, Math.min(cursorX - logoLink.offsetWidth / 2, maxShift));
+          logoLink.classList.add('is-tracking');
+          logoLink.style.transform = 'translateX(' + shift + 'px)';
+        });
+
+        headerLogo.addEventListener('mouseleave', function () {
+          logoLink.classList.remove('is-tracking');
+          logoLink.style.transform = 'translateX(0)';
+        });
+      })();
+    </script>
     <script>
         function updateTime() {
           const timeElement = document.getElementById('live-time');
