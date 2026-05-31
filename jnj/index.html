@@ -16,7 +16,7 @@
       <a class="toc-back" href="/index.html">&larr; home</a>
       <section class="article-header section" data-toc-title="overview">
         <h1>johnson and johnson</h1>
-        <p class="article-meta">data engineer intern</p>
+        <p class="article-meta">software engineer intern</p>
         <img class="hero-image hero-shadow-jnj" src="/images/jnjmed.jpeg" alt="jnj cover image" />
       </section>
 
@@ -28,15 +28,166 @@
       <section class="section" data-toc-title="role">
         <h2>role</h2>
         <p>
-          johnson and johnson is a fortune 50 healthcare company across pharmaceuticals, medical devices, and consumer
-          health. i joined the distribution canada end-to-end team as a data engineer intern. i contributed to production grade data systems and migrations. 
+          johnson & johnson is a fortune 50 healthcare company across pharmaceuticals, medical devices, and consumer
+          health. i joined the distribution canada end-to-end team as a software engineer intern. i contributed to production grade distributed data systems. 
         </p>
         <p><a href="https://www.jnj.com/medtech" target="_blank">website <i class="fa-solid fa-arrow-up-right-from-square"></i></a></p>
       </section>
 
       <section class="section" data-toc-title="work product">
         <h2>work product</h2>
-        <p>coming soon.</p>
+        <p>the core problem i worked on was large datasets being processed inefficiently. these datasets were using fixed partitioning schemes 
+          that did not adapt to data characteristics. this problem led to unbalanced workloads across workers, inefficient memory usage,
+          and slow query processing time. <br> <br>
+
+          the solution i explored was something called <span><b>dynamic segmentation</b></span>. in simple words, it analyzes data characteristics
+          in real time, adaptively partitions data based on actual distribution, optimizes parallel processing efficiency, and achieved almost a 
+          75% reduction in processing time, resulting in a 4x speedup. lets understand the theory behind this work to understand its importance. <br> <br>
+
+          why partition data? well, for example, consider the problem of processing 1TB of data on a single machine. if that machine has lets say
+          32gb of ram, our 1tb wont fit as this single machine wont be able to load the entire dataset into memory at once. the processing time will be 
+          days or weeks, and that comes with no fault tolerance. the obvious solution to this would be to partition this data across many machines. so, lets 
+          say 100 machines, each processing 10gb. now, the ram wont be an issue, the processing time would be minutes to hours, we have fault tolerance(meaning 
+          if one machine fails, then just retry that partition), and we also introduce parallel execution with about 100x potential speedup. now lets look at some
+          partitioning strategies. <br> <br>
+
+          1. fixed partitioning, the naive solution. take the following example: <br> 
+
+          <pre class="memory-editor">Data: 1,000,000 records
+Partitions: 10
+Strategy: Divide evenly
+
+Partition 0: Records 0-99,999
+Partition 1: Records 100,000-199,999
+...
+Partition 9: Records 900,000-999,999
+
+Result: 100,000 records per partition</pre>
+
+            the problem with this is the following: it assumes uniform data distribution, meaning that each partition will have the same number of records,
+            it ignores data skew, and doesn't consider processing complexity per record. <br> <br>
+
+          2. hash partitioning, a better solution. take the following example: <br> <br>
+
+          <pre class="memory-editor"><span style="color:#c678dd">def</span> <span style="color:#dcdcaa">hash_partition</span>(key, num_partitions):
+    <span style="color:#c678dd">return</span> <span style="color:#dcdcaa">hash</span>(key) % num_partitions
+
+<span style="color:#6a9955"># Example:</span>
+key = <span style="color:#ce9178">"customer_12345"</span>
+partition = <span style="color:#dcdcaa">hash</span>(key) % <span style="color:#b5cea8">10</span>
+<span style="color:#6a9955"># Records with same key always go to same partition</span></pre>
+
+
+        the benefits of this strategy include even distribution(even if hash function is good), and deterministic distribution(same key always goes to same partition).
+        there are still problems with this strategy however. it still has fixed number of partitions, doesn't adapt to data characteristics, and hash collisions can cause
+        skew. <br> <br>
+
+        3. dynamic segmentation, the solution. <br> <br> 
+
+        dynamic segmentation is adaptive partitioning that analyzes data characteristics in real time and adapts to them. it uses statistical analysis to determine the optimal number of partitions. 
+        there are several dynamic segmentation algorithms which i will discuss but before that lets look at the data skew problem. take 
+        this example scenario: <br> <br>
+
+        <pre class="memory-editor">Customer purchase data:
+Customer A: 1,000,000 purchases (power user)
+Customer B: 100 purchases
+Customer C: 50 purchases
+Customer D: 200 purchases
+...
+Customer Z: 30 purchases
+
+Fixed hash partitioning:
+Partition 0: Customer A → 1,000,000 records (SLOW!)
+Partition 1: Customers B-G → 500 records (FAST, sits idle)
+Partition 2: Customers H-M → 400 records (FAST, sits idle)
+. 
+. 
+.
+blah blah blah
+...
+
+Result: Partition 0 takes almost 1000× longer!!!
+Total time = slowest partition time</pre>
+
+          with that scenario in mind, lets look at the dynamic segmentation algorithms. <br> <br> 
+
+          algorithm 1: histogram-based segmentation. <br> <br>
+          
+          i cant share the code but i've written some pseudocode for this algorithm with the concepts in mind. see below: <br> <br> 
+
+          <pre class="memory-editor">HISTOGRAM_BASED_SEGMENTATION(data, num_partitions)
+
+            1. Count how many records belong to each key
+               Example:
+                   Customer A -> 1,000,000
+                   Customer B -> 20,000
+                   Customer C -> 15,000
+            
+            2. Sort keys from largest to smallest
+               Example:
+                   A, B, C, D, ...
+            
+            3. Create N empty partitions
+               Example:
+                   Partition 1 = 0 records
+                   Partition 2 = 0 records
+                   Partition 3 = 0 records
+                   Partition 4 = 0 records
+            
+            4. For each key (starting with the largest):
+                   Find the partition with the smallest current workload
+                   Assign the key to that partition
+                   Update that partition's workload
+            
+            5. Return the partition assignments</pre>
+
+
+          the benefits of this algorithm are that it provides balanced partition sizes, it adapts to data characteristics, and provides
+          better parallelism. the downside is the cost. it requires an initial data scan to actually build the histogram. <br> <br>
+          
+          Histogram-based segmentation was the approach most closely related to the work I explored. By analyzing the distribution 
+          of data before processing, the system could identify skewed segments and rebalance workloads before they became bottlenecks. <br> <br>
+
+          <b>algorithm 2: cost-based segmentation</b> <br> <br> 
+
+          here, we estimate processing cost per record, balance by cost not count. suppose we have 2 partitions; a, that has 
+          1000 simple records, and b, that has 1000 complex records. a count based algorithm sees the same number of records and decides
+          that the partition is balanced. but the reality is that partition b will take much longer to process than partition a. so instead 
+          what we can do is count the cost of each record and balance by total cost. this is <b>runtime</b>, which is 
+          probably the most important metric to consider when building a distributed system. <br> <br>
+
+          one thing to understand about this algorithm .... <br> <br>
+
+          the cost estimate itself doesn't do anything, as in, it does not do any optimizations. its purely used to decide where to place work. 
+          The result is a much more balanced execution time across workers.
+
+          in practice, production systems rarely know the exact processing cost ahead of time. instead, they use statistics such as record
+           counts, historical runtimes, memory consumption, or query execution metrics to estimate cost. these estimates 
+           are then used to rebalance work dynamically and reduce bottlenecks. 
+
+           <hr>
+
+           there are lots of other algorithms that can be used for dynamic segmentation. i wont cover them here but they are worth looking into.
+
+
+
+
+
+          
+
+
+
+
+          
+
+
+          
+
+          
+
+          
+
+        </p>
       </section>
     </main>
   </div>

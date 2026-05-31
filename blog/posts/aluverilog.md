@@ -4,7 +4,7 @@ date: 2025-05-28
 description: how to build an alu in verilog
 author: rishab anand
 
-hero: /images/verilog.png
+hero: /images/pastalmountain.png
 ---
 
 this writing covers how to make a very simple arithmetic logical unit in systemverilog using full adder. 
