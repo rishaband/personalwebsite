@@ -19,8 +19,60 @@
 
 
 <body class="dynamic">
-    
-   
+
+    <div id="preloader" aria-hidden="true">
+      <svg viewBox="0 0 440 260" role="img" aria-label="RA">
+        <path class="pl-stroke pl-r"  d="M95 205 L95 60 C150 52 158 108 100 130 C120 150 145 178 178 205" />
+        <path class="pl-stroke pl-a1" d="M210 205 L272 62 L336 205" />
+        <path class="pl-stroke pl-a2" d="M234 150 L311 150" />
+      </svg>
+    </div>
+    <script>
+      (function () {
+        var pre = document.getElementById('preloader');
+        if (!pre) return;
+
+        function finish() {
+          pre.classList.add('pl-done');
+          setTimeout(function () {
+            if (pre && pre.parentNode) pre.parentNode.removeChild(pre);
+          }, 600);
+        }
+
+        var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        var paths = pre.querySelectorAll('.pl-stroke');
+
+        if (reduce || !paths.length) {
+          pre.classList.add('pl-fill');
+          setTimeout(finish, 450);
+          return;
+        }
+
+        var delays = [0, 850, 1400];
+        var durs   = [850, 600, 320];
+
+        try {
+          Array.prototype.forEach.call(paths, function (p) {
+            var len = p.getTotalLength();
+            p.style.strokeDasharray = len;
+            p.style.strokeDashoffset = len;
+          });
+          pre.getBoundingClientRect(); // force reflow so the initial state sticks
+          Array.prototype.forEach.call(paths, function (p, i) {
+            var d = durs[i] || 500, dl = delays[i] || 0;
+            p.style.transition = 'stroke-dashoffset ' + d + 'ms cubic-bezier(0.65,0,0.35,1) ' + dl + 'ms, stroke 0.45s ease';
+            p.style.strokeDashoffset = '0';
+          });
+          var drawEnd = 1400 + 320;
+          setTimeout(function () { pre.classList.add('pl-fill'); }, drawEnd + 120);
+          setTimeout(finish, drawEnd + 720);
+        } catch (e) {
+          pre.classList.add('pl-fill');
+          setTimeout(finish, 500);
+        }
+      })();
+    </script>
+
     <div class="container center heading--one-size">
         <div id="particles-js" style="position: absolute; top: 0; left: 0; width: 100%; height: 52%; pointer-events: none;   ">
             <canvas style="width: 100%; height: 100%; display: inline-block; vertical-align: baseline; overflow-clip-margin: content-box; overflow: clip; padding-bottom: 200px;"  >
@@ -45,7 +97,7 @@
     
             <div class="label-content">
                 <h1 class="site-name" id="name">rishab anand</h1>
-                <h2 class="site-tagline">interested in full stack development, low level systems programming, and quantitative development</h2>
+                
 
 
     
