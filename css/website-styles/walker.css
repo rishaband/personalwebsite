@@ -54,7 +54,7 @@ body {
     border-radius: 10px;
     box-shadow:
       -60px -60px 120px rgba(60,55,42,255),    /* top-left slate gray */
-      60px 60px 120px rgba(109, 97, 73, 0.5)
+      60px 60px 120px rgba(182, 179, 179, 0.5)
       /* bottom-right bluish-gray */
   }
   
@@ -108,7 +108,7 @@ body {
     margin: 40px auto;
     width: 100%;
     border-radius: 12px;
-    box-shadow: 0 0 30px rgba(255, 255, 255, 0.04);
+    box-shadow: 0 0 30px rgba(228, 226, 226, 0.04);
   }
   
   a {

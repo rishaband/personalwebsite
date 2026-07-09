@@ -31,6 +31,7 @@
                     <a href="index.html">
                         <div class="logo">> % RA </div>
                     </a>
+                    <span class="timeline-date" aria-hidden="true"></span>
                 </div>
                 
             </div>
@@ -73,7 +74,7 @@
                 <div class="career-stack">
                     <p class="career-group">currently</p>
 
-                    <a class="career-row" href="https://uwaterloo.ca/" target="_blank" rel="noopener noreferrer">
+                    <a class="career-row" href="https://uwaterloo.ca/" target="_blank" rel="noopener noreferrer" data-start="2023-09" data-end="present">
                         <span class="career-role">computer engineering</span>
                         <span class="career-org">
                             <img class="career-icon" src="images/waterloo.svg" alt="University of Waterloo logo">
@@ -81,12 +82,12 @@
                         </span>
                     </a>
 
-                    <a class="career-row career-row--hint" href="watstreet/index.html">
-                        <span class="career-role">quant dev & research</span>
+                    <a class="career-row career-row--hint" href="aws/index.html" data-start="2026-09" data-end="2026-12">
+                        <span class="career-role">software development engineering intern</span>
                         <span class="career-org-group">
                             <span class="career-org">
-                                <img class="career-icon" src="images/watst.webp" alt="Wat Street logo">
-                                <span>watstreet</span>
+                                <img class="career-icon" src="images/awspic.jpg" alt="Amazon Web Services logo">
+                                <span>amazon web services</span>
                             </span>
                             <span class="row-hint" aria-hidden="true">read more</span>
                         </span>
@@ -94,8 +95,8 @@
 
                     <p class="career-group">previously</p>
 
-                    <a class="career-row career-row--hint" href="ford/index.html">
-                        <span class="career-role">software engineer intern</span>
+                    <a class="career-row career-row--hint" href="ford/index.html" data-start="2026-01" data-end="2026-04">
+                        <span class="career-role">software engineering intern</span>
                         <span class="career-org-group">
                             <span class="career-org">
                                 <img class="career-icon" src="images/fordimg.png" alt="Ford logo">
@@ -105,8 +106,8 @@
                         </span>
                     </a>
 
-                    <a class="career-row career-row--hint" href="jnj/index.html">
-                        <span class="career-role">software engineer intern</span>
+                    <a class="career-row career-row--hint" href="jnj/index.html" data-start="2025-09" data-end="2025-11">
+                        <span class="career-role">software engineering intern</span>
                         <span class="career-org-group">
                             <span class="career-org">
                                 <img class="career-icon" src="https://www.jnj.com/favicon.ico" alt="Johnson and Johnson">
@@ -116,19 +117,8 @@
                         </span>
                     </a>
 
-                    <a class="career-row career-row--hint" href="day5/index.html">
-                        <span class="career-role">software engineer intern</span>
-                        <span class="career-org-group">
-                            <span class="career-org">
-                                <img class="career-icon" src="images/d5a-finals-20-e1597176134107.webp" alt="day5 analytics logo">
-                                <span>day5 analytics</span>
-                            </span>
-                            <span class="row-hint" aria-hidden="true">read more</span>
-                        </span>
-                    </a>
-
-                    <a class="career-row career-row--hint" href="prgx/index.html">
-                        <span class="career-role">software engineer intern</span>
+                    <a class="career-row career-row--hint" href="prgx/index.html" data-start="2024-09" data-end="2024-12">
+                        <span class="career-role">software engineering intern</span>
                         <span class="career-org-group">
                             <span class="career-org">
                                 <img class="career-icon" src="images/ardian.jpg" alt="PRGX logo">
@@ -138,8 +128,8 @@
                         </span>
                     </a>
 
-                    <a class="career-row career-row--hint" href="walker/index.html">
-                        <span class="career-role">performance engineer intern</span>
+                    <a class="career-row career-row--hint" href="walker/index.html" data-start="2024-01" data-end="2024-04">
+                        <span class="career-role">performance engineering intern</span>
                         <span class="career-org-group">
                             <span class="career-org">
                                 <img class="career-icon" src="images/stealth_startup_tlv_logo.jpeg" alt="Stealth Startup logo">
@@ -148,11 +138,6 @@
                             <span class="row-hint" aria-hidden="true">read more</span>
                         </span>
                     </a>
-                </div>
-
-                <div class="blog-stack" id="blog">
-                    <p class="career-group">writings</p>
-                    <div id="blog-list" class="blog-list" aria-live="polite"></div>
                 </div>
 
             </div>
@@ -177,27 +162,76 @@
     <script src="https://cdn.jsdelivr.net/npm/@floating-ui/core@1.6.0"></script>
     <script src="https://cdn.jsdelivr.net/npm/@floating-ui/dom@1.6.3"></script>
     <script src="javascript/js/bootstrap.js"></script>
-    <script src="js/blog-list.js"></script>
     <script src="js/main.js"> </script>
     <script>
       (function () {
         var headerLogo = document.querySelector('.header-logo');
         var logoLink   = document.querySelector('.header-logo a');
+        var dateLabel  = document.querySelector('.header-logo .timeline-date');
 
         if (!headerLogo || !logoLink) return;
+
+        var MONTHS = ['jan', 'feb', 'mar', 'apr', 'may', 'jun', 'jul', 'aug', 'sep', 'oct', 'nov', 'dec'];
+
+        // absolute month index: year * 12 + (month - 1)
+        function toAbs(str) {
+          var parts = str.split('-');
+          return parseInt(parts[0], 10) * 12 + (parseInt(parts[1], 10) - 1);
+        }
+
+        function fmt(abs) {
+          return MONTHS[abs % 12] + ' ' + Math.floor(abs / 12);
+        }
+
+        var TL_START = toAbs('2023-09');
+        var TL_END   = toAbs('2026-12');
+        var TL_SPAN  = TL_END - TL_START;
+
+        var rows = Array.prototype.slice.call(
+          document.querySelectorAll('.career-row[data-start]')
+        );
+
+        function clearHighlights() {
+          rows.forEach(function (row) {
+            row.classList.remove('timeline-active');
+          });
+        }
 
         headerLogo.addEventListener('mousemove', function (e) {
           var rect     = headerLogo.getBoundingClientRect();
           var cursorX  = e.clientX - rect.left;
+          var frac     = Math.max(0, Math.min(cursorX / rect.width, 1));
           var maxShift = rect.width - logoLink.offsetWidth;
           var shift    = Math.max(0, Math.min(cursorX - logoLink.offsetWidth / 2, maxShift));
+
           logoLink.classList.add('is-tracking');
           logoLink.style.transform = 'translateX(' + shift + 'px)';
+
+          var current = Math.round(TL_START + frac * TL_SPAN);
+
+          headerLogo.classList.add('is-scrubbing');
+          if (dateLabel) {
+            dateLabel.textContent = fmt(current);
+            dateLabel.style.transform = 'translateX(' + shift + 'px)';
+          }
+
+          rows.forEach(function (row) {
+            var start   = toAbs(row.getAttribute('data-start'));
+            var endAttr = row.getAttribute('data-end');
+            var end     = endAttr === 'present' ? TL_END : toAbs(endAttr);
+            if (current >= start && current <= end) {
+              row.classList.add('timeline-active');
+            } else {
+              row.classList.remove('timeline-active');
+            }
+          });
         });
 
         headerLogo.addEventListener('mouseleave', function () {
           logoLink.classList.remove('is-tracking');
           logoLink.style.transform = 'translateX(0)';
+          headerLogo.classList.remove('is-scrubbing');
+          clearHighlights();
         });
       })();
     </script>

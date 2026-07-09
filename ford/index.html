@@ -28,17 +28,198 @@
       <section class="section" data-toc-title="role">
         <h2>role</h2>
         <p>
-          ford motor company is a global fortune 50 automotive leader, pioneering advancements in electric vehicles,
-          mobility solutions, and software-defined vehicle technology. i joined the vehicle root cause analysis team as a
-          software engineer intern, where i will contribute to development and testing of machine learning systems that
-          enhance vehicle functionality, reliability, and automation capabilities. i will also be working on safety-critical software systems(in c/c++)
+          ford motor company is a global fortune 20 automotive leader. i joined the vehicle root cause analysis team as a
+          software engineer intern, where i contributed to development and testing of machine learning systems that
+          enhanced vehicle functionality, reliability, and automation capabilities. i also worked on safety-critical software systems in c/c++.
         </p>
         <p><a href="https://www.ford.com/" target="_blank">website <i class="fa-solid fa-arrow-up-right-from-square"></i></a></p>
       </section>
 
       <section class="section" data-toc-title="work product">
         <h2>work product</h2>
-        <p>coming soon.</p>
+        <p>
+          one of the projects i worked on involved simplifying the defect root-cause analysis process and algorithm. this process was usually done 
+          by gathering context(historical and testing data) from many different sources and then using a well trained model to complete the root cause analysis. 
+          i worked on the system that unified this whole process. the whole thing from start to finish takes about 30-90 seconds depending on 
+          how much context got stuffed into the model prompt and how busy that model was. <br> <br> 
+
+          <b>the spinner problem</b> <br> <br>
+
+          the naive way to build this is a normal request to response. the client posts the current context, waits, and the server 
+          replies once with a finished analysis. it pretty simple and it works, but for anything that takes more than a couple of seconds, 
+          it <b>feels</b> broken. 
+
+          heres the thing about spinners: a spinner that runs for 2 seconds and a spinner that runs for 90 seconds look identical 
+          for the first 2 seconds. the user has no way to tell between progress and no progress. so what actually happens is people 
+          wait for lets say 10 seconds, assume its dead, and send another request. now you have got 2 90 seconds jobs running for 
+          one user which then makes everything even slower. the underlying idea here is that there are 2 different <b>types</b> of latencies: 
+          <br>
+          <br>
+          1. precieved latency: how long it feels you waited 
+          <br> <br>
+          2. actual latency: how long you actually waited 
+          <br>  <br>
+
+          actual latency is bounded by physics or model size, and you can't really do much about it. i briefly talked about this in my previous 
+          experience, see <a style="text-decoration: none; color: rgb(195, 97, 12);" href="/walker/index.html">here</a> for that reading. so yea,
+          the model takes as long as it takes. precieved latency on the other hand is a ux problem and you can absolutely change that 
+          without touching the model itself. the trick is to stop hiding the work and start showing it to the user. <br> <br>
+
+          <b>time to first token</b> <br> <br> 
+
+          the metric that matters for this is time to first token(ttft). so basically how long until the user sees <b>anything</b> come back as opposed 
+          to how long until the whole thing is done. if you can get the first words on the screen in a sec or 2, the user isntantly knows the system is 
+          functional, even though the response might be x seconds away. the ambiguity disappears because they literally see the system in action. this is the 
+          same reason why llms stream their responses to you instead of dropping a large chunk of text at once. nothing is made faster here, its only done so you as the 
+          user dont add more load to the system and end up waiting even longer. so now the goal becomes stream the models output to the client token by token 
+          as its generated instead of buffering the whole thing and then sending it all at once. 
+
+          <b>using sse for this, but alternatives?</b> <br> <br> 
+
+          once i decided i wanted to push the data from the server to the client incrementally, i had to decide between a few options. 
+          <br> <br> 
+
+          1. polling: the client repeatdly asks "done?" every x seconds. you either end up polling too fast or too slow, and you would 
+          need "middle" memory to store the partial outputs between the polls. so not really a good option. 
+          <br> <br>
+          2. websockets: the duplex bidirectional channel over a single tcp connection. this is pretty good when both sides need to communication 
+          constantly. like multiplayer games or multi-user editors. but this option requires a protocol update where we start as a http then switches. 
+          <br> <br>
+          3. server-sent events(sse): its one directional, from the server to client, over a single long lived http connection. the server keeps the connection 
+          open and sends events down the pipe whenever it wants. 
+
+          <br> <br>
+          and so the deciding question is if we need bidirectional communication or not. and in token streaming, the answer is no. the client only makes one 
+          request here with the context, and from then onwards its just the server doing its thing. theres nothing the client needs to say mid-stream. so websockets
+          dont make sense at all. kind of overkill for this case actually. 
+          <br> <br> 
+
+          <b>how does sse work?</b> <br> <br> 
+
+          its just a normal http response with a specific content type that never closes. the server responds with something like 
+          "content-type: text/event-stream" and then instead of writing the body once and closing, it keeps the connection open and 
+          writes little text framed messages whenever it has something. each message looks like this: 
+
+
+
+
+
+
+        </p>
+
+        <pre class="memory-editor">data: hello\n\n
+data: world\n\n</pre>
+
+        <p>
+          the format is literally <code>data: &lt;payload&gt;</code> followed by a blank line. the double newline (<code>\n\n</code>) is what 
+          tells the client "this event is complete, fire it." that's basically the entire protocol. <br> <br>
+
+          the payload itself is just text, so the standard move is to shove json in there and parse it client-side. that's exactly what i 
+          did and each event carried a small json object so i could tag what <i>kind</i> of message it was.
+        </p>
+
+        <h3>the implementation</h3>
+        <p>
+          the backend piece hangs on one flag. the llm client call gets <code>stream=True</code>, which changes the return type from "one 
+          finished string" to "a generator that yields chunks (deltas) as the model produces them." each delta is usually a token or a 
+          few characters. <br> <br>
+
+          so the endpoint became a loop: pull each delta off the model's generator, wrap it as an sse event, flush it down the connection. 
+          i used a <code>type</code> field on each event so the client knew how to handle it:
+        </p>
+
+        <pre class="memory-editor">data: {"type":"token","text":"Root"}\n\n
+data: {"type":"token","text":" cause"}\n\n
+data: {"type":"token","text":":"}\n\n
+...
+data: {"type":"result", ...}\n\n</pre>
+
+        <p>
+          <code>token</code> events are the live stream. the final <code>result</code> event is the signal that 
+          generation finished and carries the cleaned-up structured payload. <br> <br>
+
+          on the client side, the logic is just: read each event as it arrives, and if it's a <code>token</code>, append its text to an 
+          accumulating string and re-render a little monospace preview box so the user watches it type out in real time. one small but 
+          important detail — i only rendered the <b>last ~1200 characters</b> of that accumulating string at any time:
+        </p>
+
+        <pre class="memory-editor">accumulated:  [.......... 8000 chars of report so far ..........]
+rendered:                        [ last 1200 shown ]</pre>
+
+        <p>
+          the reason is that, in worst case scenario, a 90-second generation produces a <i>lot</i> of text, and if you naively re-render the entire growing string 
+          on every single token, the dom (or in my case the rendered preview) gets heavier and heavier and the ui starts to chug right when 
+          you want it smooth. capping the visible window keeps re-renders cheap and constant no matter how long the response gets. the full 
+          text is still accumulating underneath <br> <br>
+
+          then when the <code>result</code> event lands, the client wipes the raw preview box and swaps in the final structured sections, 
+          nicely formatted. the messy live stream was just a progress indicator and the real output is the parsed result.
+        </p>
+
+        <h3>the actually hard part: parsing structure out of a stream</h3>
+        <p>
+          this was annoying and an obstacle that i had to get help on.  <br> <br>
+
+          i needed structured output. specifically a json object with exactly six keys, one per report section, so i could render each into 
+          its own styled card. the prompt told the model in no uncertain terms: return a json object, these six keys, nothing else, etc etc. <br> <br>
+
+          llms do not reliably listen to this. <br> <br>
+
+          even with a clear instruction, the model would sometimes do things like:
+        </p>
+        <pre class="memory-editor">extra text here
+{
+  "problem_description": "...",
+  "root_cause": "...",
+  ...
+}
+extra text here 
+</pre>
+
+        <p>
+          so now my "valid json" has random text glued to the front and back. if you just hand that 
+          whole blob to <code>json.loads()</code>, it throws immediately, because that string is not valid json. it's prose with some json 
+          <i>in</i> it. and you cannot just retry and hope, because it's non-deterministic; it'll do it again on its own schedule. <br> <br>
+
+          the principle i landed on, which generalizes way beyond llms: <b>never trust the output format of a non-deterministic upstream.</b> 
+          if something can hand you garbage-adjacent output, you parse defensively and you have a fallback path. so the parsing went two layers:
+        </p>
+
+        <pre class="memory-editor">1. try json.loads(raw)              &lt;- works when the model behaves
+2. on failure, regex out the json   &lt;- works when it wraps it in prose</pre>
+
+        <p>
+          the fallback was a regex that grabs everything from the first <code>{</code> to the last <code>}</code>:
+        </p>
+
+        <pre class="memory-editor"><span class="code-lang">python</span><span style="color:#dcdcaa">re.search</span>(<span style="color:#ce9178">r'\{.*\}'</span>, raw, re.DOTALL)</pre>
+
+        <p>
+          pull that substring out, parse <i>that</i>, and you recover the json from inside the prose sandwich. then on top of both layers, 
+          any section that came back empty (<code>""</code> or <code>null</code>) just got dropped from the display instead of rendering an 
+          empty card. <br> <br>
+
+          the limitation in this approach is the interesting part. 
+          <code>\{.*\}</code> is <b>greedy</b>. the <code>.*</code> matches as much as it possibly can, so it grabs from the first opening 
+          brace all the way to the <i>last</i> closing brace in the whole string. for the common "prose, then one json object, then more 
+          prose" case, that's exactly what you want. it will skip the leading prose and trailing prose and snag the object. but if the model 
+          emitted two separate json-ish blocks, or there were stray braces in the prose, greedy matching would happily swallow everything 
+          between them and hand you something malformed. <br> <br>
+
+          so it's a pragmatic fix, but not a bulletproof one. it solved the actual failure mode i was seeing (prose wrapped around a single 
+          object) cheaply and reliably. the more robust version would be a balanced-brace parser that counts <code>{</code> and <code>}</code> 
+          to find a properly closed object, or better yet using the model's constrained/structured output mode so it can't emit prose in the 
+          first place. but for the failure i actually had, the greedy regex was the right amount of engineering, which my mentor agreed to as well. i think that knowing <i>why</i> it works 
+          and <i>where</i> it'd break is more valuable than pretending it's perfect.
+        </p>
+
+        <h3>takeaways</h3>
+        <p>a few things i learned:</p>
+        <ul>
+          <li><b>perceived latency is a real lever when you cant fix the actual latency</b> </li>
+          <li><b>pick the transport that matches the data flow</b> </li>
+          <li><b>defensive parsing at every non-deterministic boundary</b> </li>
+        </ul>
       </section>
     </main>
   </div>
