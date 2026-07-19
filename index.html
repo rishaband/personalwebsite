@@ -77,17 +77,6 @@
         <div id="particles-js" style="position: absolute; top: 0; left: 0; width: 100%; height: 52%; pointer-events: none;   ">
             <canvas style="width: 100%; height: 100%; display: inline-block; vertical-align: baseline; overflow-clip-margin: content-box; overflow: clip; padding-bottom: 200px;"  >
         </div>
-        <header class="header" >
-            <div class="inner-header">
-                <div class="header-logo">
-                    <a href="index.html">
-                        <div class="logo">> % RA </div>
-                    </a>
-                    <span class="timeline-date" aria-hidden="true"></span>
-                </div>
-                
-            </div>
-        </header>
         <!-- 
         <div class="top-right-image">
             <img src="images/stoicmarc.webp" alt="stoic marc">
@@ -97,15 +86,6 @@
     
             <div class="label-content">
                 <h1 class="site-name" id="name">rishab anand</h1>
-                
-
-
-    
-                  
-              
-
-                
-                
                 <div class="social-links">
                     <a href="mailto:r25anand@uwaterloo.ca" class="icon-link" aria-label="email">
                         <i class="fa-solid fa-envelope"></i>
@@ -216,78 +196,6 @@
     <script src="javascript/js/bootstrap.js"></script>
     <script src="js/main.js"> </script>
     <script>
-      (function () {
-        var headerLogo = document.querySelector('.header-logo');
-        var logoLink   = document.querySelector('.header-logo a');
-        var dateLabel  = document.querySelector('.header-logo .timeline-date');
-
-        if (!headerLogo || !logoLink) return;
-
-        var MONTHS = ['jan', 'feb', 'mar', 'apr', 'may', 'jun', 'jul', 'aug', 'sep', 'oct', 'nov', 'dec'];
-
-        // absolute month index: year * 12 + (month - 1)
-        function toAbs(str) {
-          var parts = str.split('-');
-          return parseInt(parts[0], 10) * 12 + (parseInt(parts[1], 10) - 1);
-        }
-
-        function fmt(abs) {
-          return MONTHS[abs % 12] + ' ' + Math.floor(abs / 12);
-        }
-
-        var TL_START = toAbs('2023-09');
-        var TL_END   = toAbs('2026-12');
-        var TL_SPAN  = TL_END - TL_START;
-
-        var rows = Array.prototype.slice.call(
-          document.querySelectorAll('.career-row[data-start]')
-        );
-
-        function clearHighlights() {
-          rows.forEach(function (row) {
-            row.classList.remove('timeline-active');
-          });
-        }
-
-        headerLogo.addEventListener('mousemove', function (e) {
-          var rect     = headerLogo.getBoundingClientRect();
-          var cursorX  = e.clientX - rect.left;
-          var frac     = Math.max(0, Math.min(cursorX / rect.width, 1));
-          var maxShift = rect.width - logoLink.offsetWidth;
-          var shift    = Math.max(0, Math.min(cursorX - logoLink.offsetWidth / 2, maxShift));
-
-          logoLink.classList.add('is-tracking');
-          logoLink.style.transform = 'translateX(' + shift + 'px)';
-
-          var current = Math.round(TL_START + frac * TL_SPAN);
-
-          headerLogo.classList.add('is-scrubbing');
-          if (dateLabel) {
-            dateLabel.textContent = fmt(current);
-            dateLabel.style.transform = 'translateX(' + shift + 'px)';
-          }
-
-          rows.forEach(function (row) {
-            var start   = toAbs(row.getAttribute('data-start'));
-            var endAttr = row.getAttribute('data-end');
-            var end     = endAttr === 'present' ? TL_END : toAbs(endAttr);
-            if (current >= start && current <= end) {
-              row.classList.add('timeline-active');
-            } else {
-              row.classList.remove('timeline-active');
-            }
-          });
-        });
-
-        headerLogo.addEventListener('mouseleave', function () {
-          logoLink.classList.remove('is-tracking');
-          logoLink.style.transform = 'translateX(0)';
-          headerLogo.classList.remove('is-scrubbing');
-          clearHighlights();
-        });
-      })();
-    </script>
-    <script>
         function updateTime() {
           const timeElement = document.getElementById('live-time');
           if (!timeElement) return;
@@ -302,6 +210,7 @@
         // Update every second
         setInterval(updateTime, 1000);
       </script>
+
       
       
 </body>

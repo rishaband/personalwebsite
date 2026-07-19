@@ -9,8 +9,148 @@
   <link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:ital,wght@0,200..900;1,200..900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/css/website-styles/experience-layout.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <style>
+    #preloader {
+      position: fixed;
+      inset: 0;
+      z-index: 99999;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #0f1418;
+      transition: opacity 0.7s ease;
+    }
+    #preloader.pl-done {
+      opacity: 0;
+      pointer-events: none;
+    }
+    #preloader svg {
+      width: clamp(180px, 30vw, 300px);
+      height: auto;
+      overflow: visible;
+      transition: filter 0.5s ease;
+    }
+    #preloader .jet {
+      transform-box: fill-box;
+      transform-origin: center;
+      animation: b2-drift 3.4s ease-out forwards;
+    }
+    #preloader .b2-body {
+      fill: url(#b2Metal);
+      opacity: 0;
+      transition: opacity 0.9s ease;
+    }
+    #preloader.pl-fill .b2-body { opacity: 1; }
+    #preloader .pl-stroke {
+      fill: none;
+      stroke: #f4f7f6;
+      stroke-width: 2.2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+    #preloader .b2-edge { stroke-width: 2.6; }
+    #preloader.pl-fill svg {
+      filter: drop-shadow(0 0 16px rgba(235, 240, 240, 0.45));
+    }
+    #preloader .scan { opacity: 0; }
+    #preloader.pl-go .scan {
+      animation: b2-scan 1.5s ease-in-out 0.1s forwards;
+    }
+    @keyframes b2-scan {
+      0%   { opacity: 0; transform: translateY(-72px); }
+      14%  { opacity: 1; }
+      86%  { opacity: 1; }
+      100% { opacity: 0; transform: translateY(180px); }
+    }
+    @keyframes b2-drift {
+      0%   { transform: translateY(9px) scale(0.98); }
+      100% { transform: translateY(-6px) scale(1.03); }
+    }
+  </style>
 </head>
 <body>
+
+  <div id="preloader" aria-hidden="true">
+    <svg viewBox="0 0 400 300" role="img" aria-label="b-2 spirit stealth bomber">
+      <defs>
+        <linearGradient id="b2Metal" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stop-color="#5a636a" />
+          <stop offset="0.5" stop-color="#3a4248" />
+          <stop offset="1" stop-color="#232a2f" />
+        </linearGradient>
+        <linearGradient id="b2Scan" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stop-color="#ffffff" stop-opacity="0" />
+          <stop offset="0.5" stop-color="#ffffff" stop-opacity="0.65" />
+          <stop offset="1" stop-color="#ffffff" stop-opacity="0" />
+        </linearGradient>
+        <clipPath id="b2clip">
+          <path d="M200 55 L366 160 L340 168 L296 194 L246 172 L200 200 L154 172 L104 194 L60 168 L34 160 Z" />
+        </clipPath>
+      </defs>
+
+      <g class="jet">
+        <path class="b2-body" d="M200 55 L366 160 L340 168 L296 194 L246 172 L200 200 L154 172 L104 194 L60 168 L34 160 Z" />
+        <g clip-path="url(#b2clip)">
+          <rect class="scan" x="16" y="122" width="368" height="48" fill="url(#b2Scan)" />
+        </g>
+        <path class="pl-stroke b2-edge" d="M200 55 L366 160 L340 168 L296 194 L246 172 L200 200 L154 172 L104 194 L60 168 L34 160 Z" />
+        <path class="pl-stroke" d="M200 66 L200 196" />
+        <path class="pl-stroke" d="M178 92 Q200 80 222 92" />
+        <path class="pl-stroke" d="M200 82 L344 162" />
+        <path class="pl-stroke" d="M200 82 L56 162" />
+        <path class="pl-stroke" d="M186 150 L192 182" />
+        <path class="pl-stroke" d="M214 150 L208 182" />
+        <path class="pl-stroke" d="M262 150 L286 190" />
+        <path class="pl-stroke" d="M138 150 L114 190" />
+      </g>
+    </svg>
+  </div>
+  <script>
+    (function () {
+      var pre = document.getElementById('preloader');
+      if (!pre) return;
+
+      function finish() {
+        pre.classList.add('pl-done');
+        setTimeout(function () {
+          if (pre && pre.parentNode) pre.parentNode.removeChild(pre);
+        }, 750);
+      }
+
+      var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      var draws = pre.querySelectorAll('.pl-stroke');
+
+      if (reduce || !draws.length) {
+        pre.classList.add('pl-fill');
+        pre.classList.add('pl-go');
+        setTimeout(finish, 1200);
+        return;
+      }
+
+      try {
+        // draw the outline first, then the interior panel lines
+        Array.prototype.forEach.call(draws, function (p) {
+          var len = p.getTotalLength();
+          p.style.strokeDasharray = len;
+          p.style.strokeDashoffset = len;
+        });
+        pre.getBoundingClientRect(); // force reflow so the initial state sticks
+        Array.prototype.forEach.call(draws, function (p, i) {
+          var dl = i === 0 ? 0 : 320 + i * 80;
+          var du = i === 0 ? 1100 : 500;
+          p.style.transition = 'stroke-dashoffset ' + du + 'ms cubic-bezier(0.65,0,0.35,1) ' + dl + 'ms';
+          p.style.strokeDashoffset = '0';
+        });
+        setTimeout(function () { pre.classList.add('pl-fill'); }, 900);
+        setTimeout(function () { pre.classList.add('pl-go'); }, 1300);
+        setTimeout(finish, 3400);
+      } catch (e) {
+        pre.classList.add('pl-fill');
+        pre.classList.add('pl-go');
+        setTimeout(finish, 1200);
+      }
+    })();
+  </script>
   <div class="experience-shell">
     <main class="article-content narrative-flow">
       <a class="toc-back" href="/index.html">&larr; home</a>

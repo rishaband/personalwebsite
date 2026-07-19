@@ -9,8 +9,95 @@
   <link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:ital,wght@0,200..900;1,200..900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/css/website-styles/experience-layout.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <style>
+    #preloader {
+      position: fixed;
+      inset: 0;
+      z-index: 99999;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #141414;
+      transition: opacity 0.55s ease;
+    }
+    #preloader.pl-done {
+      opacity: 0;
+      pointer-events: none;
+    }
+    #preloader svg {
+      width: clamp(240px, 42vw, 380px);
+      height: auto;
+      overflow: visible;
+      transition: filter 0.45s ease;
+    }
+    #preloader .pl-stroke {
+      fill: none;
+      stroke: rgba(90, 150, 230, 0.4);
+      stroke-width: 8;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+    #preloader.pl-fill .pl-stroke {
+      stroke: #2f7fe6;
+    }
+    #preloader.pl-fill svg {
+      filter: drop-shadow(0 0 12px rgba(47, 127, 230, 0.5));
+    }
+  </style>
 </head>
 <body>
+
+  <div id="preloader" aria-hidden="true">
+    <svg viewBox="0 0 500 210" role="img" aria-label="ford mustang">
+      <path class="pl-stroke pl-body" d="M40 150 L40 126 C46 114 66 108 95 106 C135 103 165 82 205 74 C222 71 242 72 258 74 C285 78 312 92 336 104 C360 112 388 112 428 111 C448 111 460 120 463 136 L463 150 L404 150 A32 32 0 0 0 340 150 L164 150 A32 32 0 0 0 100 150 Z" />
+      <path class="pl-stroke pl-wheels" d="M344 152 a28 28 0 1 0 56 0 a28 28 0 1 0 -56 0 M362 152 a10 10 0 1 0 20 0 a10 10 0 1 0 -20 0 M104 152 a28 28 0 1 0 56 0 a28 28 0 1 0 -56 0 M122 152 a10 10 0 1 0 20 0 a10 10 0 1 0 -20 0" />
+    </svg>
+  </div>
+  <script>
+    (function () {
+      var pre = document.getElementById('preloader');
+      if (!pre) return;
+
+      function finish() {
+        pre.classList.add('pl-done');
+        setTimeout(function () {
+          if (pre && pre.parentNode) pre.parentNode.removeChild(pre);
+        }, 600);
+      }
+
+      var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      var paths = pre.querySelectorAll('.pl-stroke');
+
+      if (reduce || !paths.length) {
+        pre.classList.add('pl-fill');
+        setTimeout(finish, 450);
+        return;
+      }
+
+      var delays = [0, 1050];
+      var durs   = [1100, 450];
+
+      try {
+        Array.prototype.forEach.call(paths, function (p) {
+          var len = p.getTotalLength();
+          p.style.strokeDasharray = len;
+          p.style.strokeDashoffset = len;
+        });
+        pre.getBoundingClientRect(); // force reflow so the initial state sticks
+        Array.prototype.forEach.call(paths, function (p, i) {
+          var d = durs[i] || 500, dl = delays[i] || 0;
+          p.style.transition = 'stroke-dashoffset ' + d + 'ms cubic-bezier(0.65,0,0.35,1) ' + dl + 'ms, stroke 0.45s ease';
+          p.style.strokeDashoffset = '0';
+        });
+        var drawEnd = 1050 + 450;
+        setTimeout(function () { pre.classList.add('pl-fill'); }, drawEnd + 120);
+        setTimeout(finish, drawEnd + 700);
+      } catch (e) {
+        pre.classList.add('pl-fill');
+        setTimeout(finish, 500);
+      }
+    })();
+  </script>
   <div class="experience-shell">
     <main class="article-content">
       <a class="toc-back" href="/index.html">&larr; home</a>

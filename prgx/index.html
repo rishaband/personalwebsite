@@ -9,8 +9,57 @@
   <link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:ital,wght@0,200..900;1,200..900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/css/website-styles/experience-layout.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <style>
+    #preloader {
+      position: fixed;
+      inset: 0;
+      z-index: 99999;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #141414;
+      transition: opacity 0.8s ease;
+    }
+    #preloader.pl-done {
+      opacity: 0;
+      pointer-events: none;
+    }
+    #preloader img {
+      max-width: 112%;
+      max-height: 112%;
+      object-fit: contain;
+      opacity: 0;
+      transform: scale(1.03);
+      transition: opacity 0.9s ease, transform 3.4s ease;
+    }
+    #preloader.pl-show img {
+      opacity: 1;
+      transform: scale(1);
+    }
+  </style>
 </head>
 <body>
+
+  <div id="preloader" aria-hidden="true">
+    <img src="/images/paintingchess.jpeg" alt="the chess players" />
+  </div>
+  <script>
+    (function () {
+      var pre = document.getElementById('preloader');
+      if (!pre) return;
+
+      function finish() {
+        if (pre && pre.parentNode) pre.parentNode.removeChild(pre);
+      }
+
+      // fade the painting in, hold it for ~2.5s, then fade the whole overlay out
+      requestAnimationFrame(function () {
+        requestAnimationFrame(function () { pre.classList.add('pl-show'); });
+      });
+      setTimeout(function () { pre.classList.add('pl-done'); }, 3400);
+      setTimeout(finish, 4300);
+    })();
+  </script>
   <div class="experience-shell">
     <main class="article-content">
       <a class="toc-back" href="/index.html">&larr; home</a>

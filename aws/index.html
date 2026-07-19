@@ -9,8 +9,95 @@
   <link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:ital,wght@0,200..900;1,200..900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/css/website-styles/experience-layout.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <style>
+    #preloader {
+      position: fixed;
+      inset: 0;
+      z-index: 99999;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #141414;
+      transition: opacity 0.55s ease;
+    }
+    #preloader.pl-done {
+      opacity: 0;
+      pointer-events: none;
+    }
+    #preloader svg {
+      width: clamp(150px, 26vw, 230px);
+      height: auto;
+      overflow: visible;
+      transition: filter 0.45s ease;
+    }
+    #preloader .pl-stroke {
+      fill: none;
+      stroke: rgba(255, 153, 0, 0.4);
+      stroke-width: 14;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+    #preloader.pl-fill .pl-stroke {
+      stroke: #ff9900;
+    }
+    #preloader.pl-fill svg {
+      filter: drop-shadow(0 0 12px rgba(255, 153, 0, 0.45));
+    }
+  </style>
 </head>
 <body>
+
+  <div id="preloader" aria-hidden="true">
+    <svg viewBox="0 0 440 220" role="img" aria-label="amazon">
+      <path class="pl-stroke pl-smile" d="M66 118 C158 188 282 188 360 128" />
+      <path class="pl-stroke pl-arrow" d="M360 128 L343 157 M360 128 L326 134" />
+    </svg>
+  </div>
+  <script>
+    (function () {
+      var pre = document.getElementById('preloader');
+      if (!pre) return;
+
+      function finish() {
+        pre.classList.add('pl-done');
+        setTimeout(function () {
+          if (pre && pre.parentNode) pre.parentNode.removeChild(pre);
+        }, 600);
+      }
+
+      var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      var paths = pre.querySelectorAll('.pl-stroke');
+
+      if (reduce || !paths.length) {
+        pre.classList.add('pl-fill');
+        setTimeout(finish, 450);
+        return;
+      }
+
+      var delays = [0, 950];
+      var durs   = [1000, 300];
+
+      try {
+        Array.prototype.forEach.call(paths, function (p) {
+          var len = p.getTotalLength();
+          p.style.strokeDasharray = len;
+          p.style.strokeDashoffset = len;
+        });
+        pre.getBoundingClientRect(); // force reflow so the initial state sticks
+        Array.prototype.forEach.call(paths, function (p, i) {
+          var d = durs[i] || 500, dl = delays[i] || 0;
+          p.style.transition = 'stroke-dashoffset ' + d + 'ms cubic-bezier(0.65,0,0.35,1) ' + dl + 'ms, stroke 0.45s ease';
+          p.style.strokeDashoffset = '0';
+        });
+        var drawEnd = 950 + 300;
+        setTimeout(function () { pre.classList.add('pl-fill'); }, drawEnd + 120);
+        setTimeout(finish, drawEnd + 700);
+      } catch (e) {
+        pre.classList.add('pl-fill');
+        setTimeout(finish, 500);
+      }
+    })();
+  </script>
   <div class="experience-shell">
     <main class="article-content">
       <a class="toc-back" href="/index.html">&larr; home</a>

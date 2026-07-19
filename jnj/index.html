@@ -9,8 +9,116 @@
   <link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:ital,wght@0,200..900;1,200..900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/css/website-styles/experience-layout.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <style>
+    #preloader {
+      position: fixed;
+      inset: 0;
+      z-index: 99999;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #141414;
+      transition: opacity 0.55s ease;
+    }
+    #preloader.pl-done {
+      opacity: 0;
+      pointer-events: none;
+    }
+    #preloader svg {
+      width: clamp(180px, 30vw, 265px);
+      height: auto;
+      overflow: visible;
+      transition: filter 0.45s ease;
+    }
+    #preloader .pl-stroke {
+      stroke: rgba(235, 23, 0, 0.4);
+      stroke-width: 9;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+    #preloader .pl-heart {
+      fill: transparent;
+    }
+    #preloader .pl-ecg {
+      fill: none;
+    }
+    #preloader.pl-fill .pl-heart {
+      fill: #eb1700;
+      stroke: #ff3b24;
+    }
+    #preloader.pl-fill .pl-ecg {
+      stroke: #ffffff;
+    }
+    #preloader.pl-fill svg {
+      filter: drop-shadow(0 0 16px rgba(235, 23, 0, 0.55));
+    }
+    @keyframes pl-heartbeat {
+      0%   { transform: scale(1); }
+      14%  { transform: scale(1.11); }
+      28%  { transform: scale(1); }
+      42%  { transform: scale(1.07); }
+      56%, 100% { transform: scale(1); }
+    }
+    #preloader.pl-beat svg {
+      animation: pl-heartbeat 1.1s ease-in-out;
+      transform-origin: 50% 60%;
+    }
+  </style>
 </head>
 <body>
+
+  <div id="preloader" aria-hidden="true">
+    <svg viewBox="0 0 440 300" role="img" aria-label="johnson and johnson">
+      <path class="pl-stroke pl-heart" d="M220 122 C200 74 120 74 120 142 C120 200 196 232 220 262 C244 232 320 200 320 142 C320 74 240 74 220 122 Z" />
+      <path class="pl-stroke pl-ecg" d="M85 182 L175 182 L190 182 L200 166 L210 182 L219 128 L229 222 L237 182 L250 182 L355 182" />
+    </svg>
+  </div>
+  <script>
+    (function () {
+      var pre = document.getElementById('preloader');
+      if (!pre) return;
+
+      function finish() {
+        pre.classList.add('pl-done');
+        setTimeout(function () {
+          if (pre && pre.parentNode) pre.parentNode.removeChild(pre);
+        }, 650);
+      }
+
+      var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      var paths = pre.querySelectorAll('.pl-stroke');
+
+      if (reduce || !paths.length) {
+        pre.classList.add('pl-fill');
+        setTimeout(finish, 500);
+        return;
+      }
+
+      var delays = [0, 700];
+      var durs   = [950, 550];
+
+      try {
+        Array.prototype.forEach.call(paths, function (p) {
+          var len = p.getTotalLength();
+          p.style.strokeDasharray = len;
+          p.style.strokeDashoffset = len;
+        });
+        pre.getBoundingClientRect(); // force reflow so the initial state sticks
+        Array.prototype.forEach.call(paths, function (p, i) {
+          var d = durs[i] || 500, dl = delays[i] || 0;
+          p.style.transition = 'stroke-dashoffset ' + d + 'ms cubic-bezier(0.65,0,0.35,1) ' + dl + 'ms, stroke 0.45s ease, fill 0.5s ease';
+          p.style.strokeDashoffset = '0';
+        });
+        var drawEnd = 700 + 550;
+        setTimeout(function () { pre.classList.add('pl-fill'); }, drawEnd + 120);
+        setTimeout(function () { pre.classList.add('pl-beat'); }, drawEnd + 170);
+        setTimeout(finish, drawEnd + 1250);
+      } catch (e) {
+        pre.classList.add('pl-fill');
+        setTimeout(finish, 500);
+      }
+    })();
+  </script>
   <div class="experience-shell">
     <main class="article-content">
       <a class="toc-back" href="/index.html">&larr; home</a>
